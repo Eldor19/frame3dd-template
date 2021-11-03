@@ -1,0 +1,14 @@
+<Infoproblemtype version="1.0">
+    <Program>
+        <Name>Frame3DD</Name>
+        <Version>2.0</Version>
+        <CustomLibAutomatic>1</CustomLibAutomatic>
+        <CustomLibNativeGroups>1</CustomLibNativeGroups>
+        <MinimumGiDVersion>13</MinimumGiDVersion>
+        <ImageFileBrowser>images/ico.png</ImageFileBrowser>
+        <Maintainer>CIMNE's GiD &lt;gid@.cimne.upc.edu&gt;</Maintainer>
+        <Homepage>https://www.gidhome.com</Homepage>
+        <ShortDescription>Interface GiD-Frame3DD open source code to solve 3D frames by the matricial method</ShortDescription>
+        <Description>Interface GiD-Frame3DD open source code to solve 3D frames by the matricial method</Description>
+    </Program>
+</Infoproblemtype>
