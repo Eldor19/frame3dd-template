@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<frame3dd_data version='1.0'>
+<Frame3DD_default version='1.0'>
   <style show_menubutton_about='0' show_menubutton_search='1'>
   </style>
   <display_options frame_width="151" is_frame_open="1"/>
@@ -16,7 +16,10 @@
     </value>
     <container n="basic_units" pn="Basic units"  help="Basic units to be used in the analysis.">
       <value n='units_length' pn='Length' unit_definition="L"/>     
-      <value n='units_mass' pn='Mass' unit_definition="M"/>          
+      <value n='units_mass' pn='Mass' unit_definition="M"/>   
+      <value n='units_time' pn='Time' unit_defintion='T'/>
+      <value n='units_force' pn='Force' unit_definition='F'/>
+
     </container>
   </container>
 
@@ -56,11 +59,30 @@
     <value n="material" pn="Material" editable='0' help="Choose a material from the database." values_tree='[GetMaterialsList]'/>
   </condition>
 
-  <container n="load_cases" pn="Load_Cases">
+  <container n="load_cases" pn="Load Cases">
+    <blockdata n='load case' name='Load Case ' sequence='1' editable_name='unique' icon="darkorange-bracket" help='Load case.' morebutton="0">
+      <container n="gravity" pn="Gravity" help="Specify gravitational acceleration.">
+        <value n="g_x" pn="Gravity x" v="0" help="Gravitational acceleration in x direction." unit_magnitude="L/T^2" units="m/s^2"/>
+        <value n="g_y" pn="Gravity y" v="0" help="Gravitational acceleration in y direction." unit_magnitude="L/T^2" units="m/s^2"/>
+        <value n="g_z" pn="Gravity z" v="-9.81" help="Gravitational acceleration in z direction." unit_magnitude="L/T^2" units="m/s^2"/>
+      </container>
+        <condition n="concentrated load" pn="Concentrated Load" ov="point" ovm="node" help="Spezify concentrated loads.">
+          <value n="fx" pn="Fx" v="0"  help="Concentrated force in x direction." unit_magnitude="F" units="N"/>  
+          <value n="fy" pn="Fy" v="0"  help="Concentrated force in y direction." unit_magnitude="F" units="N"/>  
+          <value n="fz" pn="Fz" v="0"  help="Concentrated force in z direction." unit_magnitude="F" units="N"/>  
+          <value n="mx" pn="Mx" v="0"  help="Concentrated moment in x direction." unit_magnitude="F*L" units="N*m"/>  
+          <value n="my" pn="My" v="0"  help="Concentrated moment in y direction." unit_magnitude="F*L" units="N*m"/>  
+          <value n="mz" pn="Mz" v="0"  help="Concentrated moment in z direction." unit_magnitude="F*L" units="N*m"/> 
+        </condition>
+    </blockdata>
   </container>
 
+  <!--Keine Ahnung bis jetzt was die folgenden zwei lines machen-->
+  <edit_command n="Edit load cases" pn="Edit load cases"  proc='EditDatabaseList'/>
   <edit_command n="Edit materials" pn="Edit materials"  proc='EditDatabaseList'/>
-    <include path="xml/materials.xml"/>
+
+
+  <include path="xml/materials.xml"/>
 
   <!--  Außerdem welche nodes wie fixed sind etc ist nicht per load case änderbar? Und warum kann ich das nicht normal reloaden? wie genau muss das ganze heißen frame_3dd_data? damit es gut eingebettet werden kann?-->
-</frame3dd_data>
+</Frame3DD_default>
