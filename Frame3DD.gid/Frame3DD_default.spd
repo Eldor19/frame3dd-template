@@ -19,6 +19,8 @@
       <value n='units_mass' pn='Mass' unit_definition="M"/>   
       <value n='units_time' pn='Time' unit_defintion='T'/>
       <value n='units_force' pn='Force' unit_definition='F'/>
+      <value n='units_temperature' pn='Temperature' unit_definition='Temp'/>
+      <value n='units_rotation' pn='Rotation' unit_definition='Angle'/>
 
     </container>
   </container>
@@ -39,16 +41,16 @@
 
   <!-- restraints, wäre noch besser mit einem dropdown zwischen 0 und 1 für jeden Node-->
   <condition n="restraints" pn="Restraints" ov="point" ovm="node"  help="Secify restraints for a specific node.">
-    <value n="fx" pn="Fx" v="0"  help="Can the node react with a force in x direction? Yes:1 , No:0."/>  
-    <value n="fy" pn="Fy" v="0"  help="Can the node react with a force in y direction? Yes:1 , No:0."/>  
-    <value n="fz" pn="Fz" v="0"  help="Can the node react with a force in z direction? Yes:1 , No:0."/>  
-    <value n="mx" pn="Mx" v="0"  help="Can the node react with a moment in x direction? Yes:1 , No:0."/>  
-    <value n="my" pn="My" v="0"  help="Can the node react with a moment in y direction? Yes:1 , No:0."/>  
-    <value n="mz" pn="Mz" v="0"  help="Can the node react with a moment in z direction? Yes:1 , No:0."/>  
+    <value n="fx" pn="Fx" v="0" values="0,1"  help="Can the node react with a force in x direction? Yes:1 , No:0."/>  
+    <value n="fy" pn="Fy" v="0" values="0,1" help="Can the node react with a force in y direction? Yes:1 , No:0."/>  
+    <value n="fz" pn="Fz" v="0" values="0,1" help="Can the node react with a force in z direction? Yes:1 , No:0."/>  
+    <value n="mx" pn="Mx" v="0" values="0,1" help="Can the node react with a moment in x direction? Yes:1 , No:0."/>  
+    <value n="my" pn="My" v="0" values="0,1" help="Can the node react with a moment in y direction? Yes:1 , No:0."/>  
+    <value n="mz" pn="Mz" v="0" values="0,1" help="Can the node react with a moment in z direction? Yes:1 , No:0."/>  
   </condition>
 
 
-  <condition n="element_data" pn="Frame Element Data" ov="line" help="Specify frame element data.">
+  <condition n="element_data" pn="Frame Element Data" ov="line" ovm="elements" help="Specify frame element data.">
     <value n="Ax" pn="Ax" v="0"  help="Specify crossectional area with normal in x direction."/>  
     <value n="Asy" pn="Asy" v="0"  help="Specify shear area with normal in y direction."/>  
     <value n="Asz" pn="Asz" v="0"  help="Specify shear area with normal in z direction."/>  
@@ -58,6 +60,9 @@
     <value n="roll" pn="Roll Angle" v="0"  help="Specify the roll angle."/>  
     <value n="material" pn="Material" editable='0' help="Choose a material from the database." values_tree='[GetMaterialsList]'/>
   </condition>
+
+  <include path="xml/materials.xml"/>
+
 
   <container n="load_cases" pn="Load Cases">
     <blockdata n='load case' name='Load Case ' sequence='1' editable_name='unique' icon="darkorange-bracket" help='Load case.' morebutton="0">
@@ -74,6 +79,50 @@
           <value n="my" pn="My" v="0"  help="Concentrated moment in y direction." unit_magnitude="F*L" units="N*m"/>  
           <value n="mz" pn="Mz" v="0"  help="Concentrated moment in z direction." unit_magnitude="F*L" units="N*m"/> 
         </condition>
+        <condition n="uniform load" pn="Uniform Load" ov="line"  help="Spezify uniform loads.">
+          <value n="fx" pn="Fx" v="0"  help="Uniform force in x direction." unit_magnitude="F/L" units="N/m"/>  
+          <value n="fy" pn="Fy" v="0"  help="Uniform force in y direction." unit_magnitude="F/L" units="N/m"/>  
+          <value n="fz" pn="Fz" v="0"  help="Uniform force in z direction." unit_magnitude="F/L" units="N/m"/>  
+        </condition>
+        <condition n="trapezoidal load" pn="Trapezoidal Load" ov="line"  help="Spezify trapezoidal loads.">
+          <value n="p1_x" pn="P1_x" v="0"  help="X value of first point." unit_magnitude="L" units="m"/>  
+          <value n="p2_x" pn="P2_x" v="0"  help="X value of second point." unit_magnitude="L" units="m"/>  
+          <value n="p1_fx" pn="P1_fx" v="0" help="X value of load at first point." unit_magnitude="F" units="N"/>
+          <value n="p2_fx" pn="P2_fx" v="0" help="X value of load at second point." unit_magnitude="F" units="N"/>
+          <value n="p1_y" pn="P1_y" v="0"  help="Y value of first point." unit_magnitude="L" units="m"/>  
+          <value n="p2_y" pn="P2_y" v="0"  help="Y value of second point." unit_magnitude="L" units="m"/>  
+          <value n="p1_fy" pn="P1_fy" v="0" help="Y value of load at first point." unit_magnitude="F" units="N"/>
+          <value n="p2_fy" pn="P2_fy" v="0" help="Y value of load at second point." unit_magnitude="F" units="N"/>
+          <value n="p1_z" pn="P1_z" v="0"  help="Z value of first point." unit_magnitude="L" units="m"/>  
+          <value n="p2_z" pn="P2_z" v="0"  help="Z value of second point." unit_magnitude="L" units="m"/>  
+          <value n="p1_fz" pn="P1_fz" v="0" help="Z value of load at first point." unit_magnitude="F" units="N"/>
+          <value n="p2_fz" pn="P2_fz" v="0" help="Z value of load at second point." unit_magnitude="F" units="N"/>
+        </condition>
+        <condition n="interior load" pn="Interior point loads" ov="line" help="Specify interior loads.">
+          <value n="fx" pn="Fx" v="0"  help="Interior force in x direction." unit_magnitude="F" units="N"/>  
+          <value n="fy" pn="Fy" v="0"  help="Interior force in y direction." unit_magnitude="F" units="N"/>  
+          <value n="fz" pn="Fz" v="0"  help="Interior force in z direction." unit_magnitude="F" units="N"/>
+          <value n="x" pn="x" v="0" help="Distance from point 1, where the interior force is applied." unit_magnitude="L" units="m" />
+        </condition>
+        <condition n="temperature load" pn="Temperature loads" ov="line" help="Specify temperature loads.">
+          <value n="alpha" pn="alpha" v="0"  help="Coefficient of thermal expansion." unit_magnitude="1/Temp" units="1/K"/>  
+          <value n="hy" pn="hy" v="0"  help="Depth of section in y direction." unit_magnitude="L" units="m"/>  
+          <value n="hz" pn="hz" v="0"  help="Depth of section in z direction." unit_magnitude="L" units="m"/>
+          <value n="Ty+" pn="Ty+" v="0" help="Temperature change on positive y surface." unit_magnitude="Temp" units="K"/>
+          <value n="Ty-" pn="Ty-" v="0" help="Temperature change on negative y surface." unit_magnitude="Temp" units="K"/>
+          <value n="Tz+" pn="Tz+" v="0" help="Temperature change on positive z surface." unit_magnitude="Temp" units="K"/>
+          <value n="Tz-" pn="Tz-" v="0" help="Temperature change on negative z surface." unit_magnitude="Temp" units="K"/>
+        </condition>
+        <condition n="nodal_disps" pn="Prescribed nodal displacements" ov="point" ovm="node" help="Specfify prescribed nodal displacements.">
+          <value n="ux" pn="ux" v="0"  help="Displacement in x direction." unit_magnitude="L" units="m"/>  
+          <value n="uy" pn="uy" v="0"  help="Displacement force in y direction." unit_magnitude="L" units="m"/>  
+          <value n="uz" pn="uz" v="0"  help="Displacement force in z direction." unit_magnitude="L" units="m"/>  
+          <value n="rot_x" pn="Rotx" v="0"  help="Rotation in x direction." unit_magnitude="Angle" units="°"/>  
+          <value n="rot_y" pn="Roty" v="0"  help="Rotation in y direction." unit_magnitude="Angle" units="°"/>  
+          <value n="rot_z" pn="Rotz" v="0"  help="Rotation in z direction." unit_magnitude="Angle" units="°"/> 
+        </condition>
+
+
     </blockdata>
   </container>
 
@@ -82,7 +131,11 @@
   <edit_command n="Edit materials" pn="Edit materials"  proc='EditDatabaseList'/>
 
 
-  <include path="xml/materials.xml"/>
 
-  <!--  Außerdem welche nodes wie fixed sind etc ist nicht per load case änderbar? Und warum kann ich das nicht normal reloaden? wie genau muss das ganze heißen frame_3dd_data? damit es gut eingebettet werden kann?-->
+  <container n="Options" pn="Options">
+    <value n="incl_shear_def" pn="Include Shear Deformation" v="0" values="0,1"/>
+    <value n="incl_geo_stiff" pn="Include Geometric Stiffness" v="0" values="0,1"/>
+  </container>
+
+  <!-- ovm fehlt bei parr load case schritten. Warum heißen die uniform loads im result file ux etc? Fx etc macht mehr sinn  Und warum kann ich das nicht normal reloaden? wie genau muss das ganze heißen frame_3dd_data? damit es gut eingebettet werden kann?-->
 </Frame3DD_default>
