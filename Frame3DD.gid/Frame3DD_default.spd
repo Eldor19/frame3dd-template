@@ -47,11 +47,12 @@
 
   <condition n="element_data" pn="Frame Element Data" ov="line" help="Specify frame element data.">
     <value n="Ax" pn="Ax" v="0"  help="Specify crossectional area with normal in x direction."/>  
-    <value n="Asy" pn="Asy" v="0"  help="Specify crossectional area with normal in y direction."/>  
-    <value n="Asz" pn="Asz" v="0"  help="Specify crossectional area with normal in y direction."/>  
-    <value n="Jxx" pn="Jxx" v="0"  help="Specify xx entry of moment of inertia tensor."/>  
-    <value n="Iyy" pn="Iyy" v="0"  help="Specify yy entry of moment of inertia tensor."/>  
-    <value n="Izz" pn="Izz" v="0"  help="Specify zz entry of moment of inertia tensor."/>  
+    <value n="Asy" pn="Asy" v="0"  help="Specify shear area with normal in y direction."/>  
+    <value n="Asz" pn="Asz" v="0"  help="Specify shear area with normal in z direction."/>  
+    <value n="Jxx" pn="Jxx" v="0"  help="Specify the torsional moment of inertia - x axis."/>  
+    <value n="Iyy" pn="Iyy" v="0"  help="Specify the Iyy bending moment of inertia - y axis."/>  
+    <value n="Izz" pn="Izz" v="0"  help="Specify the Izz bending moment of inertia - z axis."/>  
+    <value n="roll" pn="Roll Angle" v="0"  help="Specify the roll angle."/>  
     <value n="material" pn="Material" editable='0' help="Choose a material from the database." values_tree='[GetMaterialsList]'/>
   </condition>
 
@@ -61,5 +62,5 @@
   <edit_command n="Edit materials" pn="Edit materials"  proc='EditDatabaseList'/>
     <include path="xml/materials.xml"/>
 
-  <!-- restraints und frame elemtn data fehlen noch. Außerdem welche nodes wie fixed sind etc ist nicht per load case änderbar? Und warum kann ich das nicht normal reloaden? wie genau muss das ganze heißen frame_3dd_data? damit es gut eingebettet werden kann?-->
+  <!--  Außerdem welche nodes wie fixed sind etc ist nicht per load case änderbar? Und warum kann ich das nicht normal reloaden? wie genau muss das ganze heißen frame_3dd_data? damit es gut eingebettet werden kann?-->
 </frame3dd_data>
