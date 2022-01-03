@@ -10,6 +10,12 @@ proc Frame3DD::WriteCalculationFile { filename } {
     customlib::InitWriteFile $filename
     
     # Place your writing script here
+    customlib::WriteString "Input Data file for Frame3DD - 3D structural frame analysis\
+    ([gid_groups_conds::give_active_unit F], [gid_groups_conds::give_active_unit L],\
+    [gid_groups_conds::give_active_unit M], [gid_groups_conds::give_active_unit T],\
+    [gid_groups_conds::give_active_unit Temp], [gid_groups_conds::give_active_unit Angle])" 
+     
+
 
     customlib::EndWriteFile
 }

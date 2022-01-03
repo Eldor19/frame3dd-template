@@ -50,7 +50,7 @@
   </condition>
 
 
-  <condition n="element_data" pn="Frame Element Data" ov="line" ovm="elements" help="Specify frame element data.">
+  <condition n="element_data" pn="Frame Element Data" ov="line" ovm="element" help="Specify frame element data.">
     <value n="Ax" pn="Ax" v="0"  help="Specify crossectional area with normal in x direction."/>  
     <value n="Asy" pn="Asy" v="0"  help="Specify shear area with normal in y direction."/>  
     <value n="Asz" pn="Asz" v="0"  help="Specify shear area with normal in z direction."/>  
@@ -79,12 +79,12 @@
           <value n="my" pn="My" v="0"  help="Concentrated moment in y direction." unit_magnitude="F*L" units="N*m"/>  
           <value n="mz" pn="Mz" v="0"  help="Concentrated moment in z direction." unit_magnitude="F*L" units="N*m"/> 
         </condition>
-        <condition n="uniform load" pn="Uniform Load" ov="line"  help="Spezify uniform loads.">
+        <condition n="uniform load" pn="Uniform Load" ov="line" ovm="element" help="Spezify uniform loads.">
           <value n="fx" pn="Fx" v="0"  help="Uniform force in x direction." unit_magnitude="F/L" units="N/m"/>  
           <value n="fy" pn="Fy" v="0"  help="Uniform force in y direction." unit_magnitude="F/L" units="N/m"/>  
           <value n="fz" pn="Fz" v="0"  help="Uniform force in z direction." unit_magnitude="F/L" units="N/m"/>  
         </condition>
-        <condition n="trapezoidal load" pn="Trapezoidal Load" ov="line"  help="Spezify trapezoidal loads.">
+        <condition n="trapezoidal load" pn="Trapezoidal Load" ov="line" ovm="element"  help="Spezify trapezoidal loads.">
           <value n="p1_x" pn="P1_x" v="0"  help="X value of first point." unit_magnitude="L" units="m"/>  
           <value n="p2_x" pn="P2_x" v="0"  help="X value of second point." unit_magnitude="L" units="m"/>  
           <value n="p1_fx" pn="P1_fx" v="0" help="X value of load at first point." unit_magnitude="F" units="N"/>
@@ -98,13 +98,13 @@
           <value n="p1_fz" pn="P1_fz" v="0" help="Z value of load at first point." unit_magnitude="F" units="N"/>
           <value n="p2_fz" pn="P2_fz" v="0" help="Z value of load at second point." unit_magnitude="F" units="N"/>
         </condition>
-        <condition n="interior load" pn="Interior point loads" ov="line" help="Specify interior loads.">
+        <condition n="interior load" pn="Interior point loads" ov="line" ovm="element" help="Specify interior loads.">
           <value n="fx" pn="Fx" v="0"  help="Interior force in x direction." unit_magnitude="F" units="N"/>  
           <value n="fy" pn="Fy" v="0"  help="Interior force in y direction." unit_magnitude="F" units="N"/>  
           <value n="fz" pn="Fz" v="0"  help="Interior force in z direction." unit_magnitude="F" units="N"/>
           <value n="x" pn="x" v="0" help="Distance from point 1, where the interior force is applied." unit_magnitude="L" units="m" />
         </condition>
-        <condition n="temperature load" pn="Temperature loads" ov="line" help="Specify temperature loads.">
+        <condition n="temperature load" pn="Temperature loads" ov="line" ovm="element" help="Specify temperature loads.">
           <value n="alpha" pn="alpha" v="0"  help="Coefficient of thermal expansion." unit_magnitude="1/Temp" units="1/K"/>  
           <value n="hy" pn="hy" v="0"  help="Depth of section in y direction." unit_magnitude="L" units="m"/>  
           <value n="hz" pn="hz" v="0"  help="Depth of section in z direction." unit_magnitude="L" units="m"/>
@@ -126,15 +126,16 @@
     </blockdata>
   </container>
 
-  <!--Keine Ahnung bis jetzt was die folgenden zwei lines machen-->
-  <edit_command n="Edit load cases" pn="Edit load cases"  proc='EditDatabaseList'/>
-  <edit_command n="Edit materials" pn="Edit materials"  proc='EditDatabaseList'/>
+ 
 
 
 
   <container n="Options" pn="Options">
     <value n="incl_shear_def" pn="Include Shear Deformation" v="0" values="0,1"/>
     <value n="incl_geo_stiff" pn="Include Geometric Stiffness" v="0" values="0,1"/>
+    <value n="mesh_def_factor" pn="Mesh deformation exaggeration factor" v="1"/>
+    <value n="zoom" pn="Zoom scale for 3D plotting" v="1"/>
+    <value n="x increment" pn="X-axis increment for internal forces" v="-1" help="If dx=-1, then internal force calculations are skipped."/>
   </container>
 
   <!-- ovm fehlt bei parr load case schritten. Warum heißen die uniform loads im result file ux etc? Fx etc macht mehr sinn  Und warum kann ich das nicht normal reloaden? wie genau muss das ganze heißen frame_3dd_data? damit es gut eingebettet werden kann?-->

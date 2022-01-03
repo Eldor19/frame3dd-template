@@ -1,0 +1,33 @@
+BeginZE D:/UPC_studies/Computational Mechanics Tools/Gid_homework/frame3dd-template/developer_test.gid/developer_test.vv
+   x -1.73961973190307617 2.59709858894348145
+   y 8.79563522338867188 -0.707572460174560547
+   z -14.2548122406005859 14.2548122406005859
+   e 4.75160408020019531
+   v 0 0 0
+   r 1
+   m 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1
+   c 0.428739964962005615 4.04403162002563477 0
+   pd 0
+   pno 0
+   pfo 0
+   pf 4
+   pv 0
+   NowUse 0
+   DrawingType 0
+   LightVector 90 90 150 0
+   OGLShadow(UseShadows) 0
+   OGLShadow(RenderMode) RenderNice
+   OGLShadow(ShadowBias) -0.002
+   OGLShadow(AmbientShadows) 1
+   OGLShadow(UseFBO) 1
+   OGLShadow(FBOSize) 2048
+   OGLShadow(DimmedLightFactor) 0.02
+   OGLStereo(UseStereo) 0
+   OGLStereo(RelativeEyeDistance) 1
+   OGLStereo(FlipEyes) 0
+   OGLStereo(StereoMode) AnaglyphColors
+   OGLStereo(EyeDistance) 0.075
+   OGLStereo(LeftEyeDistance) 1 0 0 1
+   OGLStereo(RightEyeDistance) 0 1 1 1
+EndZE D:/UPC_studies/Computational Mechanics Tools/Gid_homework/frame3dd-template/developer_test.gid/developer_test.vv
+

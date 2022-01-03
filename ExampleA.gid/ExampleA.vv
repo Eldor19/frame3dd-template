@@ -1,0 +1,37 @@
+BeginZE D:/UPC_studies/Computational Mechanics Tools/Gid_homework/frame3dd-template/ExampleA.gid/ExampleA.vv
+   x -5.42708206176757813 733.76861572265625
+   y 584.32586669921875 -412.766845703125
+   z -2284.3515625 2284.3515625
+   e 397.994964599609375
+   v -0.142960991140045762 -0.0570187474871923158 -0.00726558741619070213
+   r 0.98805780634876994
+   m 0.99339216947555542 0.0306605547666549683 -0.110598243772983551 0 0.00194527255371212959 0.959018707275390625 0.283335983753204346 0 0.114753030240535736 -0.281678885221481323 0.952622056007385254 0 0 0 0 1
+   c 360 50 0
+   pd 0
+   pno 0
+   pfo 0
+   pf 4
+   pv 0
+   NowUse 1
+   DrawingType 0
+   LightVector 90 90 150 0
+   OGLShadow(UseShadows) 0
+   OGLShadow(RenderMode) RenderNice
+   OGLShadow(ShadowBias) -0.002
+   OGLShadow(AmbientShadows) 1
+   OGLShadow(UseFBO) 1
+   OGLShadow(FBOSize) 2048
+   OGLShadow(DimmedLightFactor) 0.02
+   OGLStereo(UseStereo) 0
+   OGLStereo(RelativeEyeDistance) 1
+   OGLStereo(FlipEyes) 0
+   OGLStereo(StereoMode) AnaglyphColors
+   OGLStereo(EyeDistance) 0.075
+   OGLStereo(LeftEyeDistance) 1 0 0 1
+   OGLStereo(RightEyeDistance) 0 1 1 1
+EndZE D:/UPC_studies/Computational Mechanics Tools/Gid_homework/frame3dd-template/ExampleA.gid/ExampleA.vv
+
+BeginMirror
+   Mirror 0 Angle 0.0 AngleFake -15.0 SizeFactor 2.0 HeightOffset 0.25 Color #d9e5f24d Backlight Off EdgeStyle No Type Scene DrawMode Mirror
+EndMirror
+

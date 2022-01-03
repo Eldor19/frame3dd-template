@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gid version="15.0">
+  <pre>
+    <layer_to_use name="Layer0"/>
+    <groups>
+      <group id="1" name="Concentrated Load Auto1" color="#ff00ffff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="2" name="Uniform Load Auto1" color="#008000ff" allowed_types="#f2" allowed_element_types="#7fe"/>
+      <group id="3" name="Frame Element Data Auto1" color="#ffff00ff" allowed_types="#02"/>
+      <group id="4" name="Frame Element Data Auto2" color="#ffa500ff" allowed_types="#02"/>
+      <group id="5" name="Frame Element Data Auto3" color="#ff00ffff" allowed_types="#22" allowed_element_types="#7fe"/>
+      <group id="6" name="Concentrated Load Auto2" color="#008000ff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="7" name="Trapezoidal Load Auto1" color="#ffff00ff" allowed_types="#22" allowed_element_types="#7fe"/>
+      <group id="8" name="Interior point loads Auto1" color="#ffa500ff" allowed_types="#22" allowed_element_types="#7fe"/>
+      <group id="9" name="Temperature loads Auto1" color="#ffc0cbff" allowed_types="#22" allowed_element_types="#7fe"/>
+      <group id="10" name="Prescribed nodal displacements Auto1" color="#cdc0b0ff" allowed_types="#11" allowed_element_types="#7fe"/>
+    </groups>
+    <entities_groups>
+      <entities_group name="points">
+        <vector name="entity_ids" length="2" type="integer">1 2</vector>
+        <vector name="entity_num_groups" length="2" type="ushort">2 2</vector>
+        <vector name="entity_groups" length="4" type="ushort">1 10 1 10</vector>
+      </entities_group>
+      <entities_group name="lines">
+        <vector name="entity_ids" length="2" type="integer">1 2</vector>
+        <vector name="entity_num_groups" length="2" type="ushort">4 3</vector>
+        <vector name="entity_groups" length="7" type="ushort">2 5 7 8 2 5 8</vector>
+      </entities_group>
+    </entities_groups>
+  </pre>
+</gid>
