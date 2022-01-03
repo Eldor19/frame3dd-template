@@ -87,16 +87,16 @@
         <condition n="trapezoidal load" pn="Trapezoidal Load" ov="line" ovm="element"  help="Spezify trapezoidal loads.">
           <value n="p1_x" pn="P1_x" v="0"  help="X value of first point." unit_magnitude="L" units="m"/>  
           <value n="p2_x" pn="P2_x" v="0"  help="X value of second point." unit_magnitude="L" units="m"/>  
-          <value n="p1_fx" pn="P1_fx" v="0" help="X value of load at first point." unit_magnitude="F" units="N"/>
-          <value n="p2_fx" pn="P2_fx" v="0" help="X value of load at second point." unit_magnitude="F" units="N"/>
+          <value n="p1_fx" pn="P1_fx" v="0" help="X value of load at first point." unit_magnitude="F/L" units="N/m"/>
+          <value n="p2_fx" pn="P2_fx" v="0" help="X value of load at second point." unit_magnitude="F/L" units="N/m"/>
           <value n="p1_y" pn="P1_y" v="0"  help="Y value of first point." unit_magnitude="L" units="m"/>  
           <value n="p2_y" pn="P2_y" v="0"  help="Y value of second point." unit_magnitude="L" units="m"/>  
-          <value n="p1_fy" pn="P1_fy" v="0" help="Y value of load at first point." unit_magnitude="F" units="N"/>
-          <value n="p2_fy" pn="P2_fy" v="0" help="Y value of load at second point." unit_magnitude="F" units="N"/>
+          <value n="p1_fy" pn="P1_fy" v="0" help="Y value of load at first point." unit_magnitude="F/L" units="N/m"/>
+          <value n="p2_fy" pn="P2_fy" v="0" help="Y value of load at second point." unit_magnitude="F/L" units="N/m"/>
           <value n="p1_z" pn="P1_z" v="0"  help="Z value of first point." unit_magnitude="L" units="m"/>  
           <value n="p2_z" pn="P2_z" v="0"  help="Z value of second point." unit_magnitude="L" units="m"/>  
-          <value n="p1_fz" pn="P1_fz" v="0" help="Z value of load at first point." unit_magnitude="F" units="N"/>
-          <value n="p2_fz" pn="P2_fz" v="0" help="Z value of load at second point." unit_magnitude="F" units="N"/>
+          <value n="p1_fz" pn="P1_fz" v="0" help="Z value of load at first point." unit_magnitude="F/L" units="N/m"/>
+          <value n="p2_fz" pn="P2_fz" v="0" help="Z value of load at second point." unit_magnitude="F/L" units="N/m"/>
         </condition>
         <condition n="interior load" pn="Interior point loads" ov="line" ovm="element" help="Specify interior loads.">
           <value n="fx" pn="Fx" v="0"  help="Interior force in x direction." unit_magnitude="F" units="N"/>  

@@ -14,8 +14,21 @@ proc Frame3DD::WriteCalculationFile { filename } {
     ([gid_groups_conds::give_active_unit F], [gid_groups_conds::give_active_unit L],\
     [gid_groups_conds::give_active_unit M], [gid_groups_conds::give_active_unit T],\
     [gid_groups_conds::give_active_unit Temp], [gid_groups_conds::give_active_unit Angle])" 
-     
 
+    #################### COORDINATES ############################ 
+    customlib::WriteString ""
+    customlib::WriteString "[GiD_Info Mesh NumNodes] # number of nodes"
+    customlib::WriteString "#.node x y z r"
+    customlib::WriteString "# [gid_groups_conds::give_active_unit L] [gid_groups_conds::give_active_unit L] [gid_groups_conds::give_active_unit L] [gid_groups_conds::give_active_unit L]"
+    customlib::WriteString ""
+    customlib::WriteCoordinates "%5d %14.5e %14.5e %14.5e 0.0\n"
+
+    ################### Frame Data ############################## 
+    set condition_name "frameData"
+    set condition_formats [list {"%1d" "element" "id"} {"%13.5e" "property" "Ax"} {"%13.5e" "property" "Asy"} {"%13.5e" "property" "Asz"} {"%13.5e" "property" "Jxx"} {"%13.5e" "property" "Iyy"} {"%13.5e" "property" "Izz"} {"%13.5e" "material" "E"} {"%13.5e" "material" "G"} {"%13.5e" "property" "roll"} {"%13.5e" "material" "Density"}]
+    set formats [customlib::GetElementsFormats $condition_name $condition_formats]
+    set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats]
+    customlib::WriteConnectivities $condition_name $formats "" active
 
     customlib::EndWriteFile
 }
