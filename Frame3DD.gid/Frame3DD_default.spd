@@ -61,8 +61,8 @@
   <include path="xml/materials.xml"/>
 
 
-  <container n="load_cases" pn="Load Cases" icon="force">
-    <blockdata n='load case' name='Load Case ' sequence='1' editable_name='unique' icon="force" help='Load case.' morebutton="0">
+  <container n="load_cases" pn="Load Cases" icon="force_w">
+    <blockdata n='load case' name='Load Case ' sequence='1' editable_name='unique' icon="force_w" help='Load case.' morebutton="0">
       <container n="gravity" pn="Gravity" help="Specify gravitational acceleration." icon="gravity_res">
         <value n="g_x" pn="Gravity x" v="0" help="Gravitational acceleration in x direction." unit_magnitude="L/T^2" units="m/s^2"/>
         <value n="g_y" pn="Gravity y" v="0" help="Gravitational acceleration in y direction." unit_magnitude="L/T^2" units="m/s^2"/>
@@ -95,13 +95,13 @@
           <value n="p1_fz" pn="P1_fz" v="0" help="Z value of load at first point." unit_magnitude="F/L" units="N/m"/>
           <value n="p2_fz" pn="P2_fz" v="0" help="Z value of load at second point." unit_magnitude="F/L" units="N/m"/>
         </condition>
-        <condition n="interior load" pn="Interior point loads" ov="line" ovm="element" help="Specify interior loads.">
+        <condition n="interior load" pn="Interior Point Loads" ov="line" ovm="element" help="Specify interior loads.">
           <value n="fx" pn="Fx" v="0"  help="Interior force in x direction." unit_magnitude="F" units="N"/>  
           <value n="fy" pn="Fy" v="0"  help="Interior force in y direction." unit_magnitude="F" units="N"/>  
           <value n="fz" pn="Fz" v="0"  help="Interior force in z direction." unit_magnitude="F" units="N"/>
           <value n="x" pn="x" v="0" help="Distance from point 1, where the interior force is applied." unit_magnitude="L" units="m" />
         </condition>
-        <condition n="temperature load" pn="Temperature loads" ov="line" ovm="element" help="Specify temperature loads.">
+        <condition n="temperature load" pn="Temperature Loads" ov="line" ovm="element" help="Specify temperature loads.">
           <value n="alpha" pn="alpha" v="0"  help="Coefficient of thermal expansion." unit_magnitude="1/Temp" units="1/K"/>  
           <value n="hy" pn="hy" v="0"  help="Depth of section in y direction." unit_magnitude="L" units="m"/>  
           <value n="hz" pn="hz" v="0"  help="Depth of section in z direction." unit_magnitude="L" units="m"/>
@@ -110,7 +110,7 @@
           <value n="Tz+" pn="Tz+" v="0" help="Temperature change on positive z surface." unit_magnitude="Temp" units="K"/>
           <value n="Tz-" pn="Tz-" v="0" help="Temperature change on negative z surface." unit_magnitude="Temp" units="K"/>
         </condition>
-        <condition n="nodal_disps" pn="Prescribed nodal displacements" ov="point" ovm="node" help="Specfify prescribed nodal displacements.">
+        <condition n="nodal_disps" pn="Prescribed Nodal Displacements" ov="point" ovm="node" help="Specfify prescribed nodal displacements.">
           <value n="ux" pn="ux" v="0"  help="Displacement in x direction." unit_magnitude="L" units="m"/>  
           <value n="uy" pn="uy" v="0"  help="Displacement force in y direction." unit_magnitude="L" units="m"/>  
           <value n="uz" pn="uz" v="0"  help="Displacement force in z direction." unit_magnitude="L" units="m"/>  
@@ -130,9 +130,9 @@
   <container n="Options" pn="Options" icon="options_res">
     <value n="incl_shear_def" pn="Include Shear Deformation" v="0" values="0,1"/>
     <value n="incl_geo_stiff" pn="Include Geometric Stiffness" v="0" values="0,1"/>
-    <value n="mesh_def_factor" pn="Mesh deformation exaggeration factor" v="1"/>
-    <value n="zoom" pn="Zoom scale for 3D plotting" v="1"/>
-    <value n="x increment" pn="X-axis increment for internal forces" v="-1" help="If dx=-1, then internal force calculations are skipped."/>
+    <value n="mesh_def_factor" pn="Mesh Deformation Exaggeration Factor" v="1"/>
+    <value n="zoom" pn="Zoom Scale for 3D Plotting" v="1"/>
+    <value n="x increment" pn="X-axis Increment for Internal Forces" v="-1" help="If dx=-1, then internal force calculations are skipped."/>
   </container>
 
   <!-- ovm fehlt bei parr load case schritten. Warum heißen die uniform loads im result file ux etc? Fx etc macht mehr sinn  Und warum kann ich das nicht normal reloaden? wie genau muss das ganze heißen frame_3dd_data? damit es gut eingebettet werden kann?-->
