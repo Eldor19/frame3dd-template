@@ -5,26 +5,23 @@
   </style>
   <display_options frame_width="151" is_frame_open="1"/>
   <!-- units -->
-  <units>  
+  <units> 
     <!--by now it is compulsory define this node if units are used (could be empty if defaults are enougth)-->
   </units>
-  
-  <container n="units" pn="Units" icon="darkorange-length-18">
-    <value n='units_mesh' pn='Geometry units' unit_mesh_definition="1"/>
+  <container n="units" pn="Units" icon="darkorange-length-16" help="Basic units to be used in the analysis.">
     <value n='units_system' pn='Units system' units_system_definition="1">
       <dependencies node="//*[@unit_definition or @unit_mesh_definition='1']" att1='change_units_system' v1='{@v}'/> 
     </value>
-    <container n="basic_units" pn="Basic units"  help="Basic units to be used in the analysis.">
-      <value n='units_length' pn='Length' unit_definition="L"/>     
-      <value n='units_mass' pn='Mass' unit_definition="M"/>   
-      <value n='units_time' pn='Time' unit_defintion='T'/>
-      <value n='units_force' pn='Force' unit_definition='F'/>
-      <value n='units_temperature' pn='Temperature' unit_definition='Temp'/>
-      <value n='units_rotation' pn='Rotation' unit_definition='Angle'/>
+    <value n='units_length' pn='Length' unit_definition="L" unit_mesh_definition="1"/>     
+    <value n='units_mass' pn='Mass' unit_definition="M"/>   
+    <value n='units_time' pn='Time' unit_definition="T"/>
+    <value n='units_force' pn='Force' unit_definition="F"/>
+    <value n='units_temperature' pn='Temperature' unit_definition="Temp"/>
+    <value n='units_rotation' pn='Rotation' unit_definition="Angle"/>
+    <value n='units_pressure' pn='Pressure' unit_definition="P"/>
 
-    </container>
   </container>
-
+  
   <!-- procs -->
   <procs>
     <proc n='GetMaterialsList' args='args'>
@@ -40,7 +37,7 @@
   </procs>
 
   <!-- restraints, wäre noch besser mit einem dropdown zwischen 0 und 1 für jeden Node-->
-  <condition n="restraints" pn="Restraints" ov="point" ovm="node"  help="Secify restraints for a specific node.">
+  <condition n="restraints" pn="Restraints" ov="point" ovm="node" icon="constraints"  help="Secify restraints for a specific node.">
     <value n="fx" pn="Fx" v="0" values="0,1"  help="Can the node react with a force in x direction? Yes:1 , No:0."/>  
     <value n="fy" pn="Fy" v="0" values="0,1" help="Can the node react with a force in y direction? Yes:1 , No:0."/>  
     <value n="fz" pn="Fz" v="0" values="0,1" help="Can the node react with a force in z direction? Yes:1 , No:0."/>  
@@ -50,23 +47,23 @@
   </condition>
 
 
-  <condition n="element_data" pn="Frame Element Data" ov="line" ovm="element" help="Specify frame element data.">
-    <value n="Ax" pn="Ax" v="0"  help="Specify crossectional area with normal in x direction."/>  
-    <value n="Asy" pn="Asy" v="0"  help="Specify shear area with normal in y direction."/>  
-    <value n="Asz" pn="Asz" v="0"  help="Specify shear area with normal in z direction."/>  
-    <value n="Jxx" pn="Jxx" v="0"  help="Specify the torsional moment of inertia - x axis."/>  
-    <value n="Iyy" pn="Iyy" v="0"  help="Specify the Iyy bending moment of inertia - y axis."/>  
-    <value n="Izz" pn="Izz" v="0"  help="Specify the Izz bending moment of inertia - z axis."/>  
-    <value n="roll" pn="Roll Angle" v="0"  help="Specify the roll angle."/>  
+  <condition n="element_data" pn="Frame Element Data" ov="line" ovm="element" icon="beam_res" help="Specify frame element data.">
+    <value n="Ax" pn="Ax" v="0"  help="Specify crossectional area with normal in x direction." unit_magnitude="L^2" units="m^2"/>  
+    <value n="Asy" pn="Asy" v="0"  help="Specify shear area with normal in y direction." unit_magnitude="L^2" units="m^2"/>  
+    <value n="Asz" pn="Asz" v="0"  help="Specify shear area with normal in z direction." unit_magnitude="L^2" units="m^2"/>  
+    <value n="Jxx" pn="Jxx" v="0"  help="Specify the torsional moment of inertia - x axis." unit_magnitude="L^4" units="m^4"/>  
+    <value n="Iyy" pn="Iyy" v="0"  help="Specify the Iyy bending moment of inertia - y axis." unit_magnitude="L^4" units="m^4"/>  
+    <value n="Izz" pn="Izz" v="0"  help="Specify the Izz bending moment of inertia - z axis." unit_magnitude="L^4" units="m^4"/>  
+    <value n="roll" pn="Roll Angle" v="0"  help="Specify the roll angle." unit_magnitude="Angle" units="°"/>  
     <value n="material" pn="Material" editable='0' help="Choose a material from the database." values_tree='[GetMaterialsList]'/>
   </condition>
 
   <include path="xml/materials.xml"/>
 
 
-  <container n="load_cases" pn="Load Cases">
-    <blockdata n='load case' name='Load Case ' sequence='1' editable_name='unique' icon="darkorange-bracket" help='Load case.' morebutton="0">
-      <container n="gravity" pn="Gravity" help="Specify gravitational acceleration.">
+  <container n="load_cases" pn="Load Cases" icon="force">
+    <blockdata n='load case' name='Load Case ' sequence='1' editable_name='unique' icon="force" help='Load case.' morebutton="0">
+      <container n="gravity" pn="Gravity" help="Specify gravitational acceleration." icon="gravity_res">
         <value n="g_x" pn="Gravity x" v="0" help="Gravitational acceleration in x direction." unit_magnitude="L/T^2" units="m/s^2"/>
         <value n="g_y" pn="Gravity y" v="0" help="Gravitational acceleration in y direction." unit_magnitude="L/T^2" units="m/s^2"/>
         <value n="g_z" pn="Gravity z" v="-9.81" help="Gravitational acceleration in z direction." unit_magnitude="L/T^2" units="m/s^2"/>
@@ -130,7 +127,7 @@
 
 
 
-  <container n="Options" pn="Options">
+  <container n="Options" pn="Options" icon="options_res">
     <value n="incl_shear_def" pn="Include Shear Deformation" v="0" values="0,1"/>
     <value n="incl_geo_stiff" pn="Include Geometric Stiffness" v="0" values="0,1"/>
     <value n="mesh_def_factor" pn="Mesh deformation exaggeration factor" v="1"/>
