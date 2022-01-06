@@ -46,6 +46,8 @@
     <value n="mz" pn="Mz" v="0" values="0,1" help="Can the node react with a moment in z direction? Yes:1 , No:0."/>  
   </condition>
 
+  <include path="xml/materials.xml"/>
+
 
   <condition n="element_data" pn="Frame Element Data" ov="line" ovm="element" icon="beam_res" help="Specify frame element data.">
     <value n="Ax" pn="Ax" v="0"  help="Specify crossectional area with normal in x direction." unit_magnitude="L^2" units="m^2"/>  
@@ -58,7 +60,6 @@
     <value n="material" pn="Material" editable='0' help="Choose a material from the database." values_tree='[GetMaterialsList]'/>
   </condition>
 
-  <include path="xml/materials.xml"/>
 
 
   <container n="load_cases" pn="Load Cases" icon="force_w">
