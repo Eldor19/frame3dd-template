@@ -1,0 +1,20 @@
+Input Data file for Frame3DD - 3D structural frame analysis (N, m, kg, s, K, rad)
+
+# node data
+2 # number of nodes
+#.node	 x		y		z		r	 units: m
+
+    1    7.82537e-01    4.33278e+00    0.00000e+00	0.0
+    2   -4.11862e-02   -4.94234e-01    0.00000e+00	0.0
+
+# reaction data
+0 # number of nodes with reactions
+#.node	 x y z xx yy zz	 1=fixed, 0=free
+
+
+# frame element data
+1 # number of frame elements
+#   e	 n1    n2   Ax		 Asy	      Asz	   Jxx	   	Iyy	     Izz	    E	        G	     roll	    density
+#   .	 .     .    m^2	 m^2	       m^2 	    m^4	  m^4	      m^4	     Pa		 Pa	     rad	   kg/m^3
+
+0 # 1=Do, 0=Don't include shear deformation effects

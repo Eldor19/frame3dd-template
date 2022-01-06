@@ -58,8 +58,53 @@ proc Frame3DD::WriteCalculationFile { filename } {
         \t    [gid_groups_conds::give_active_unit L]^4\t  [    gid_groups_conds::give_active_unit L]^4\t      [gid_groups_conds::give_active_unit L]^4\t    \
         [gid_groups_conds::give_active_unit P]\t\t [gid_groups_conds::give_active_unit P]\t     [gid_groups_conds::give_active_unit Angle]\t   [gid_groups_conds::give_active_unit M/L^3]"
     customlib::WriteString ""
-
     customlib::WriteConnectivities $frames_list $frame_format 
+
+    ###################################### Options ###############################################
+    #set document [$::gid_groups_conds::doc documentElement]
+    #set xpath "/frame3dd_data/container\[@n = 'Options' \]/value\[@n = 'incl_shear_def' \]"
+    #set xml_node [$document selectNodes $xpath]
+    #set shear_deformation [get_domnode_attribute $xml_node v]
+
+    set document [$::gid_groups_conds::doc documentElement]
+    set xpath "/Frame3DD_default/container\[@n = 'Options' \]/value\[@n = 'incl_shear_def' \]"
+    set xml_node [$document selectNodes $xpath]
+    set shear_deformation [get_domnode_attribute $xml_node v]
+
+    set document [$::gid_groups_conds::doc documentElement]
+    set xpath "/Frame3DD_default/container\[@n = 'Options' \]/value\[@n = 'incl_geo_stiff' \]"
+    set xml_node [$document selectNodes $xpath]
+    set geo_stiff [get_domnode_attribute $xml_node v]
+
+    set document [$::gid_groups_conds::doc documentElement]
+    set xpath "/Frame3DD_default/container\[@n = 'Options' \]/value\[@n = 'mesh_def_factor' \]"
+    set xml_node [$document selectNodes $xpath]
+    set mesh_def_factor [get_domnode_attribute $xml_node v]
+
+    set document [$::gid_groups_conds::doc documentElement]
+    set xpath "/Frame3DD_default/container\[@n = 'Options' \]/value\[@n = 'zoom' \]"
+    set xml_node [$document selectNodes $xpath]
+    set zoom [get_domnode_attribute $xml_node v]
+
+    set document [$::gid_groups_conds::doc documentElement]
+    set xpath "/Frame3DD_default/container\[@n = 'Options' \]/value\[@n = 'x increment' \]"
+    set xml_node [$document selectNodes $xpath]
+    set x_incr [get_domnode_attribute $xml_node v]
+
+
+    customlib::WriteString ""
+    customlib::WriteString "$shear_deformation \t # 1=Do, 0=Don't include shear deformation effects"
+    customlib::WriteString "$geo_stiff \t # 1=Do, 0=Don't include geometric stiffness effects"
+    customlib::WriteString "$mesh_def_factor \t # Mesh exaggeration factor"
+    customlib::WriteString "$zoom \t # zoom scale for 3D plotting"
+    customlib::WriteString "$x_incr \t # x-axis increment for internal forces. If dx is -1 then internal force calculations are skipped."
+    customlib::WriteString ""
+
+    ######################Load Cases###############
+
+
+
+
 
     customlib::EndWriteFile
 }
