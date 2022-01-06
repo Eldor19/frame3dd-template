@@ -17,18 +17,49 @@ proc Frame3DD::WriteCalculationFile { filename } {
 
     #################### COORDINATES ############################ 
     customlib::WriteString ""
+    customlib::WriteString "# node data"
     customlib::WriteString "[GiD_Info Mesh NumNodes] # number of nodes"
-    customlib::WriteString "#.node x y z r"
-    customlib::WriteString "# [gid_groups_conds::give_active_unit L] [gid_groups_conds::give_active_unit L] [gid_groups_conds::give_active_unit L] [gid_groups_conds::give_active_unit L]"
+    customlib::WriteString "#.node\t x\t\ty\t\tz\t\tr\t units: [gid_groups_conds::give_active_unit L]"
     customlib::WriteString ""
-    customlib::WriteCoordinates "%5d %14.5e %14.5e %14.5e 0.0\n"
+    customlib::WriteCoordinates "%5d %14.5e %14.5e %14.5e\t0.0\n"
 
+    #################### Restraints #############################
+    customlib::WriteString ""
+    customlib::WriteString "# reaction data"
+    set restraints_list [list "restraints"]
+    set restraints_formats [list {"%5d\t" "node" "id"} {"%1d " "property" "fx"} {"%1d " "property" "fy"
+    } {"%1d " "property" "fz"} {"%1d  " "property" "mx"} {"%1d  " "property" "my"} {"%1d " "property" "mz"}]
+    set number_of_restraints [customlib::GetNumberOfNodes $restraints_list]
+    customlib::WriteString "$number_of_restraints # number of nodes with reactions"
+    customlib::WriteString "#.node\t x y z xx yy zz\t 1=fixed, 0=free"
+    customlib::WriteString ""
+    customlib::WriteNodes $restraints_list $restraints_formats 
     ################### Frame Data ############################## 
-    set condition_name "frameData"
-    set condition_formats [list {"%1d" "element" "id"} {"%13.5e" "property" "Ax"} {"%13.5e" "property" "Asy"} {"%13.5e" "property" "Asz"} {"%13.5e" "property" "Jxx"} {"%13.5e" "property" "Iyy"} {"%13.5e" "property" "Izz"} {"%13.5e" "material" "E"} {"%13.5e" "material" "G"} {"%13.5e" "property" "roll"} {"%13.5e" "material" "Density"}]
-    set formats [customlib::GetElementsFormats $condition_name $condition_formats]
-    set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats]
-    customlib::WriteConnectivities $condition_name $formats "" active
+    #set condition_name "frameData"
+    #set condition_formats [list {"%1d" "element" "id"} {"%13.5e" "property" "Ax"} {"%13.5e" "property" "Asy"} 
+    #{"%13.5e" "property" "Asz"} {"%13.5e" "property" "Jxx"} {"%13.5e" "property" "Iyy"} {"%13.5e" "property" "Izz"}
+     #{"%13.5e" "material" "E"} {"%13.5e" "material" "G"} {"%13.5e" "property" "roll"} {"%13.5e" "material" "Density"}]
+    #set formats [customlib::GetElementsFormats $condition_name $condition_formats]
+    #set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats]
+    #customlib::WriteConnectivities $condition_name $formats "" active
+    customlib::WriteString ""
+    customlib::WriteString "# frame element data"
+    set frames_list [list "element_data"]  
+    ###################################################  change later to frame_data (changed .spd!)
+    customlib::InitMaterials $frames_list 
+    set frame_format [list {"%5d" "element" "id"} {"%5d" "element" "connectivities"}  {"%13.5e" "property" "Ax"
+    } {"%13.5e" "property" "Asy"} {"%13.5e" "property" "Asz"} {"%13.5e" "property" "Jxx"} {"%13.5e" "property" "Iyy"
+    } {"%13.5e" "property" "Izz"} {"%13.5e" "material" "E"} {"%13.5e" "material" "G"} {"%13.5e" "property" "roll"
+    } {"%13.5e" "material" "Density"}]
+    #set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats]
+    customlib::WriteString "[GiD_Info Mesh NumElements] # number of frame elements"
+    customlib::WriteString "#   e\t n1    n2   Ax\t\t Asy\t      Asz\t   Jxx\t   \tIyy\t     Izz\t    E\t        G\t     roll\t    density"
+    customlib::WriteString "#   .\t .     .    [gid_groups_conds::give_active_unit L]^2\t [gid_groups_conds::give_active_unit L]^2\t       [gid_groups_conds::give_active_unit L]^2\
+        \t    [gid_groups_conds::give_active_unit L]^4\t  [    gid_groups_conds::give_active_unit L]^4\t      [gid_groups_conds::give_active_unit L]^4\t    \
+        [gid_groups_conds::give_active_unit P]\t\t [gid_groups_conds::give_active_unit P]\t     [gid_groups_conds::give_active_unit Angle]\t   [gid_groups_conds::give_active_unit M/L^3]"
+    customlib::WriteString ""
+
+    customlib::WriteConnectivities $frames_list $frame_format 
 
     customlib::EndWriteFile
 }

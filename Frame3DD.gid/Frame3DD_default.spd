@@ -49,7 +49,7 @@
   <include path="xml/materials.xml"/>
 
 
-  <condition n="element_data" pn="Frame Element Data" ov="line" ovm="element" icon="beam_res" help="Specify frame element data.">
+  <condition n="frame_data" pn="Frame Element Data" ov="line" ovm="element" icon="beam_res" help="Specify frame element data.">
     <value n="Ax" pn="Ax" v="0"  help="Specify crossectional area with normal in x direction." unit_magnitude="L^2" units="m^2"/>  
     <value n="Asy" pn="Asy" v="0"  help="Specify shear area with normal in y direction." unit_magnitude="L^2" units="m^2"/>  
     <value n="Asz" pn="Asz" v="0"  help="Specify shear area with normal in z direction." unit_magnitude="L^2" units="m^2"/>  
