@@ -93,6 +93,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
 
 
     customlib::WriteString ""
+    customlib::WriteString "# Options"
     customlib::WriteString "$shear_deformation \t # 1=Do, 0=Don't include shear deformation effects"
     customlib::WriteString "$geo_stiff \t # 1=Do, 0=Don't include geometric stiffness effects"
     customlib::WriteString "$mesh_def_factor \t # Mesh exaggeration factor"
@@ -101,6 +102,56 @@ proc Frame3DD::WriteCalculationFile { filename } {
     customlib::WriteString ""
 
     ######################Load Cases###############
+    set xpath "/Frame3DD_default/container\[@n = 'load_cases' \]"  
+    # braucht man das /blockdata hinten dran?
+    set xml_nodes [$document selectNodes $xpath]
+    set num_cases 0 
+    foreach i [$xml_nodes childNodes] { incr num_cases }
+    customlib::WriteString "$num_cases # number of static load cases"
+    set i_case 0
+
+    # mainloop
+    set xpath "/Frame3DD_default/container\[@n = 'load_cases' \]/blockdata"  
+    set xml_nodes [$document selectNodes $xpath]
+    set xpath "/Frame3DD_default/container\[@n = 'load_cases' \]"  
+    # for inside the loop
+
+    foreach load_case $xml_nodes {
+        incr i_case
+        customlib::WriteString "# Begin load case $i_case of $num_cases"
+        customlib::WriteString ""
+
+        # Gravity
+        set xpath "./container\[@n = 'gravity' \]/value\[@n = 'g_x' \]"
+        set xml_node [$load_case selectNodes $xpath]
+        # hier ganz wichtig, dass das erste Argument $loadcase ist!!!!!
+        set g_x [get_domnode_attribute $xml_node v]
+
+        set xpath "./container\[@n = 'gravity' \]/value\[@n = 'g_y' \]"
+        set xml_node [$load_case selectNodes $xpath]
+        # hier ganz wichtig, dass das erste Argument $loadcase ist!!!!!
+        set g_y [get_domnode_attribute $xml_node v]
+
+        set xpath "./container\[@n = 'gravity' \]/value\[@n = 'g_z' \]"
+        set xml_node [$load_case selectNodes $xpath]
+        # hier ganz wichtig, dass das erste Argument $loadcase ist!!!!!
+        set g_z [get_domnode_attribute $xml_node v]
+        customlib::WriteString "# gravitational acceleration for self-weigh loading (global)"
+        customlib::WriteString "# g_x\t g_y\t g_z"
+        customlib::WriteString "[gid_groups_conds::give_active_unit L/T^2]\t [gid_groups_conds::give_active_unit L/T^2]\t [gid_groups_conds::give_active_unit L/T^2]"
+        customlib::WriteString "# $g_x\t $g_y\t $g_z"
+        customlib::WriteString ""
+
+        # point loads
+
+
+
+
+        customlib::WriteString "# End load case $i_case of $num_cases"
+        customlib::WriteString ""
+
+    }
+
 
 
 
