@@ -87,6 +87,9 @@ Input Data file for Frame3DD - 3D structural frame analysis (lbf, in, lb, s, °F,
    10 0.0 -10 0.0 0.0 0.0 0.0
 
 0 # number of uniform loads
+0 # number of trapezoidal loads
+0 # number of internal concentrated loads
+0 # number of temperature loads
 # End load case 1 of 2
 
 # Begin load case 2 of 2
@@ -104,5 +107,14 @@ Input Data file for Frame3DD - 3D structural frame analysis (lbf, in, lb, s, °F,
     8 20 0.0 0.0 0.0 0.0 0.0
 
 0 # number of uniform loads
+0 # number of trapezoidal loads
+0 # number of internal concentrated loads
+3 # number of temperature loads
+# e alpha:1/°F  hy:in hz:in Ty+:°F  Ty-:°F Tz+:°F  Tz-:°F
+
+   14    6e-12 5 5 10 10 10 10 
+   17    6e-12 5 5 15 15 15 15 
+   19    6e-12 5 5 17 17 17 17 
+
 # End load case 2 of 2
 

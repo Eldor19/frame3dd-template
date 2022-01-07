@@ -10,5 +10,5 @@
  ** Input Data file for Frame3DD - 3D structural frame analysis (N  m  kg  s  K  rad)  ** 
 
  number of nodes .................................... nN =   2  ... complete
- number of nodes with reactions ..................... nR =   0  ... complete
+ number of nodes with reactions ..................... nR =   1  ... complete
  number of frame elements............................ nE =   1 

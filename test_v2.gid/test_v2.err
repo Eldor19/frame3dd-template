@@ -1,13 +1,6 @@
 [00;44;37;01m[00m[00;42;37;01m[00m
 
 [01m[41m[37m  
-  Warning:  un-restrained structure   0 imposed reactions.
-  At least 4 reactions are required to support static loads.
-  [00m
-
-
-
-[01m[41m[37m  
   error in frame element property data: Element number out of range  
  Frame element number: 0  
   [00m

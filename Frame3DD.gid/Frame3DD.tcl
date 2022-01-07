@@ -183,19 +183,19 @@ proc Frame3DD::WriteCalculationFile { filename } {
         set number_of_elements 0
         set formats_dict [dict create ]
         foreach group $groups {
-        set group_name [get_domnode_attribute $group n]
-        set fx_node [$group selectNodes "./value\[@n = 'fx'\]"]
-        set fx_value [get_domnode_attribute $fx_node v]
-        set fy_node [$group selectNodes "./value\[@n = 'fy'\]"]
-        set fy_value [get_domnode_attribute $fy_node v]
-        set fz_node [$group selectNodes "./value\[@n = 'fz'\]"]
-        
-        set format "%5d $fx_value $fy_value $fz_value \n"
-        set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
+            set group_name [get_domnode_attribute $group n]
+            set fx_node [$group selectNodes "./value\[@n = 'fx'\]"]
+            set fx_value [get_domnode_attribute $fx_node v]
+            set fy_node [$group selectNodes "./value\[@n = 'fy'\]"]
+            set fy_value [get_domnode_attribute $fy_node v]
+            set fz_node [$group selectNodes "./value\[@n = 'fz'\]"]
+            set fz_value [get_domnode_attribute $fz_node v]
+
+            set format "%5d $fx_value $fy_value $fz_value \n"
+            set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
         }
 
         set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats_dict]
-
         customlib::WriteString "$number_of_elements # number of uniform loads"
         
         if {$number_of_elements > 0} {
@@ -204,49 +204,46 @@ proc Frame3DD::WriteCalculationFile { filename } {
         customlib::WriteString ""
         GiD_WriteCalculationFile elements -elemtype Linear  $formats_dict
         customlib::WriteString ""
-
         }
 
-        # trapezoidally distirbuted load
+        # trapezoidally distributed load
         set xpath "./condition\[@n='trapezoidal load'\]/group"
         set groups [$load_case selectNodes $xpath]
         set number_of_elements 0
         set formats_dict [dict create ]
         foreach group $groups {
-        set group_name [get_domnode_attribute $group n]
-        set p1_x_node [$group selectNodes "./value\[@n = 'p1_x'\]"]
-        set p1_x_value [get_domnode_attribute $p1_x_node v]
-        set p2_x_node [$group selectNodes "./value\[@n = 'p2_x'\]"]
-        set p2_x_value [get_domnode_attribute $p2_x_node v]
-        set p1_fx_node [$group selectNodes "./value\[@n = 'p1_fx'\]"]
-        set p1_fx_value [get_domnode_attribute $p1_fx_node v]
-        set p2_fx_node [$group selectNodes "./value\[@n = 'p2_fx'\]"]
-        set p2_fx_value [get_domnode_attribute $p2_fx_node v]
+            set group_name [get_domnode_attribute $group n]
+            set p1_x_node [$group selectNodes "./value\[@n = 'p1_x'\]"]
+            set p1_x_value [get_domnode_attribute $p1_x_node v]
+            set p2_x_node [$group selectNodes "./value\[@n = 'p2_x'\]"]
+            set p2_x_value [get_domnode_attribute $p2_x_node v]
+            set p1_fx_node [$group selectNodes "./value\[@n = 'p1_fx'\]"]
+            set p1_fx_value [get_domnode_attribute $p1_fx_node v]
+            set p2_fx_node [$group selectNodes "./value\[@n = 'p2_fx'\]"]
+            set p2_fx_value [get_domnode_attribute $p2_fx_node v]
 
-        set p1_y_node [$group selectNodes "./value\[@n = 'p1_y'\]"]
-        set p1_y_value [get_domnode_attribute $p1_y_node v]
-        set p2_y_node [$group selectNodes "./value\[@n = 'p2_y'\]"]
-        set p2_y_value [get_domnode_attribute $p2_y_node v]
-        set p1_fy_node [$group selectNodes "./value\[@n = 'p1_fy'\]"]
-        set p1_fy_value [get_domnode_attribute $p1_fy_node v]
-        set p2_fy_node [$group selectNodes "./value\[@n = 'p2_fy'\]"]
-        set p2_fy_value [get_domnode_attribute $p2_fy_node v]
+            set p1_y_node [$group selectNodes "./value\[@n = 'p1_y'\]"]
+            set p1_y_value [get_domnode_attribute $p1_y_node v]
+            set p2_y_node [$group selectNodes "./value\[@n = 'p2_y'\]"]
+            set p2_y_value [get_domnode_attribute $p2_y_node v]
+            set p1_fy_node [$group selectNodes "./value\[@n = 'p1_fy'\]"]
+            set p1_fy_value [get_domnode_attribute $p1_fy_node v]
+            set p2_fy_node [$group selectNodes "./value\[@n = 'p2_fy'\]"]
+            set p2_fy_value [get_domnode_attribute $p2_fy_node v]
 
-        set p1_z_node [$group selectNodes "./value\[@n = 'p1_z'\]"]
-        set p1_z_value [get_domnode_attribute $p1_z_node v]
-        set p2_z_node [$group selectNodes "./value\[@n = 'p2_z'\]"]
-        set p2_z_value [get_domnode_attribute $p2_z_node v]
-        set p1_fz_node [$group selectNodes "./value\[@n = 'p1_fz'\]"]
-        set p1_fz_value [get_domnode_attribute $p1_fz_node v]
-        set p2_fz_node [$group selectNodes "./value\[@n = 'p2_fz'\]"]
-        set p2_fz_value [get_domnode_attribute $p2_fz_node v]
-        
-        
-        
-        set format "%5d   $p1_x_value $p2_x_value $p1_fx_value $p2_fx_value \t# location and loading - local x-axis\n\
-               \t$p1_y_value $p2_y_value $p1_fy_value $p2_fy_value \t# location and loading - local y-axis\n\
-               \t$p1_z_value $p2_z_value $p1_fz_value $p2_fz_value \t# location and loading - local z-axis\n"
-        set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
+            set p1_z_node [$group selectNodes "./value\[@n = 'p1_z'\]"]
+            set p1_z_value [get_domnode_attribute $p1_z_node v]
+            set p2_z_node [$group selectNodes "./value\[@n = 'p2_z'\]"]
+            set p2_z_value [get_domnode_attribute $p2_z_node v]
+            set p1_fz_node [$group selectNodes "./value\[@n = 'p1_fz'\]"]
+            set p1_fz_value [get_domnode_attribute $p1_fz_node v]
+            set p2_fz_node [$group selectNodes "./value\[@n = 'p2_fz'\]"]
+            set p2_fz_value [get_domnode_attribute $p2_fz_node v]
+            
+            set format "%5d   $p1_x_value $p2_x_value $p1_fx_value $p2_fx_value \t# location and loading - local x-axis\n\
+                \t$p1_y_value $p2_y_value $p1_fy_value $p2_fy_value \t# location and loading - local y-axis\n\
+                \t$p1_z_value $p2_z_value $p1_fz_value $p2_fz_value \t# location and loading - local z-axis\n"
+            set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
         }
 
         set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats_dict]
@@ -261,32 +258,89 @@ proc Frame3DD::WriteCalculationFile { filename } {
         customlib::WriteString ""
 
         }
+        # internal concentrated loads
+        set xpath "./condition\[@n='interior load'\]/group"
+        set groups [$load_case selectNodes $xpath]
+        set number_of_elements 0
+        set formats_dict [dict create ]
+        foreach group $groups {
+            set group_name [get_domnode_attribute $group n]
+            set fx_node [$group selectNodes "./value\[@n = 'fx'\]"]
+            set fx_value [get_domnode_attribute $fx_node v]
+            set fy_node [$group selectNodes "./value\[@n = 'fy'\]"]
+            set fy_value [get_domnode_attribute $fy_node v]
+            set fz_node [$group selectNodes "./value\[@n = 'fz'\]"]
+            set fz_value [get_domnode_attribute $fz_node v]
+            set x_node [$group selectNodes "./value\[@n = 'x'\]"]
+            set x_value [get_domnode_attribute $x_node v]
+            
+            set format "%5d    $fx_value $fy_value $fz_value $x_value \n"
+            set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
+        }
+
+        set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats_dict]
+
+        customlib::WriteString "$number_of_elements # number of internal concentrated loads"
+        
+        if {$number_of_elements > 0} {
+            customlib::WriteString "# e Px:[gid_groups_conds::give_active_unit F]  Py:[gid_groups_conds::give_active_unit F]\
+         Pz:[gid_groups_conds::give_active_unit F] x:[gid_groups_conds::give_active_unit L]"
+        customlib::WriteString ""
+        GiD_WriteCalculationFile elements -elemtype Linear  $formats_dict
+        customlib::WriteString ""
+        }
+
+        #temperature loads
+        set xpath "./condition\[@n='temperature load'\]/group"
+        set groups [$load_case selectNodes $xpath]
+        set number_of_elements 0
+        set formats_dict [dict create ]
+        foreach group $groups {
+            set group_name [get_domnode_attribute $group n]
+            set alpha_node [$group selectNodes "./value\[@n = 'alpha'\]"]
+            set alpha_value [get_domnode_attribute $alpha_node v]
+            set hy_node [$group selectNodes "./value\[@n = 'hy'\]"]
+            set hy_value [get_domnode_attribute $hy_node v]
+            set hz_node [$group selectNodes "./value\[@n = 'hz'\]"]
+            set hz_value [get_domnode_attribute $hz_node v]
+            set typ_node [$group selectNodes "./value\[@n = 'Ty+'\]"]
+            set typ_value [get_domnode_attribute $typ_node v]
+            set tym_node [$group selectNodes "./value\[@n = 'Ty-'\]"]
+            set tym_value [get_domnode_attribute $tym_node v]
+            set tzp_node [$group selectNodes "./value\[@n = 'Tz+'\]"]
+            set tzp_value [get_domnode_attribute $tzp_node v]
+            set tzm_node [$group selectNodes "./value\[@n = 'Tz-'\]"]
+            set tzm_value [get_domnode_attribute $tzm_node v]
+
+            set format "%5d    $alpha_value $hy_value $hz_value $typ_value $tym_value $tzp_value $tzm_value \n"
+            set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
+        }
+
+        set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats_dict]
+        customlib::WriteString "$number_of_elements # number of temperature loads"
+        
+        if {$number_of_elements > 0} {
+            customlib::WriteString "# e alpha:[gid_groups_conds::give_active_unit 1/Temp]  hy:[gid_groups_conds::give_active_unit L]\
+         hz:[gid_groups_conds::give_active_unit L] Ty+:[gid_groups_conds::give_active_unit Temp]  Ty-:[gid_groups_conds::give_active_unit Temp]\
+         Tz+:[gid_groups_conds::give_active_unit Temp]  Tz-:[gid_groups_conds::give_active_unit Temp]"
+        customlib::WriteString ""
+        GiD_WriteCalculationFile elements -elemtype Linear  $formats_dict
+        customlib::WriteString ""
+        }
 
 
 
-        #set rel_path "."
-        ##set rootpath "$xpath/blockdata\[@n='case' and @name='Case $case'\]"
-        #set sub [$load_case selectNodes $rel_path]
-        #set cl_list [list "concentrated load"]
-        #set cl_formats [list {"%5d\t" "node" "id"} {"%13.5e " "property" "fx"} {"%13.5e " "property" "fy"
-        #} {"%13.5e " "property" "fz"} {"%13.5e  " "property" "mx"} {"%13.5e  " "property" "my"} {"%13.5e " "property" "mz"}]
-        #set num_cl [customlib::GetNumberOfNodes $sub $cl_list]
-        # die reihenfolge war vorher umgedreht, offensichtlich aber beides falsch...
 
-        #customlib::WriteString "$num_cl # number of loaded nodes"
-        #customlib::WriteString "# . \t [gid_groups_conds::give_active_unit F]\t [gid_groups_conds::give_active_unit F]\t[gid_groups_conds::give_active_unit F]\
-            [gid_groups_conds::give_active_unit F*L]\t [gid_groups_conds::give_active_unit F*L]\t [gid_groups_conds::give_active_unit F*L]"
-        #customlib::WriteString ""
-        #customlib::WriteNodes  $cl_list $cl_formats 
-        #customlib::WriteString ""
+        #prescribed displacements
 
+
+      
 
 
 
 
         customlib::WriteString "# End load case $i_case of $num_cases"
         customlib::WriteString ""
-
     }
 
 
