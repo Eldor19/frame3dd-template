@@ -4,8 +4,8 @@ Input Data file for Frame3DD - 3D structural frame analysis (N, m, kg, s, K, rad
 2 # number of nodes
 #.node	 x		y		z		r	 units: m
 
-    1    7.82537e-01    4.33278e+00    0.00000e+00	0.0
-    2   -4.11862e-02   -4.94234e-01    0.00000e+00	0.0
+    1   -1.49094e+00    1.53213e+00    0.00000e+00	0.0
+    2    3.35255e+00    6.34267e+00    0.00000e+00	0.0
 
 # reaction data
 0 # number of nodes with reactions

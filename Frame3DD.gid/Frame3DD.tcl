@@ -44,7 +44,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
     #customlib::WriteConnectivities $condition_name $formats "" active
     customlib::WriteString ""
     customlib::WriteString "# frame element data"
-    set frames_list [list "element_data"]  
+    set frames_list [list "frame_data"]  
     ###################################################  change later to frame_data (changed .spd!)
     customlib::InitMaterials $frames_list 
     set frame_format [list {"%5d" "element" "id"} {"%5d" "element" "connectivities"}  {"%13.5e" "property" "Ax"
@@ -139,7 +139,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
         customlib::WriteString "# gravitational acceleration for self-weight loading (global)"
         customlib::WriteString "# g_x\t g_y\t g_z"
         customlib::WriteString "# [gid_groups_conds::give_active_unit L/T^2]\t [gid_groups_conds::give_active_unit L/T^2]\t [gid_groups_conds::give_active_unit L/T^2]"
-        customlib::WriteString "# $g_x\t $g_y\t $g_z"
+        customlib::WriteString " $g_x\t $g_y\t $g_z"
         customlib::WriteString ""
 
         # concentrated loads
@@ -161,7 +161,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
         set my_value [get_domnode_attribute $my_node v]
         set mz_node [$group selectNodes "./value\[@n = 'mz'\]"]
         set mz_value [get_domnode_attribute $mz_node v]
-        set format "%5d $fx_value $fy_value $fz_value $my_value $my_value $mz_value\n"
+        set format "%5d $fx_value $fy_value $fz_value $mx_value $my_value $mz_value\n"
         set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
         }
 
@@ -328,17 +328,40 @@ proc Frame3DD::WriteCalculationFile { filename } {
         customlib::WriteString ""
         }
 
-
-
-
         #prescribed displacements
+        set xpath "./condition\[@n='nodal_disps'\]/group"
+        set groups [$load_case selectNodes $xpath]
+        set number_of_elements 0
+        set formats_dict [dict create ]
+        foreach group $groups {
+        set group_name [get_domnode_attribute $group n]
+        set ux_node [$group selectNodes "./value\[@n = 'ux'\]"]
+        set ux_value [get_domnode_attribute $ux_node v]
+        set uy_node [$group selectNodes "./value\[@n = 'uy'\]"]
+        set uy_value [get_domnode_attribute $uy_node v]
+        set uz_node [$group selectNodes "./value\[@n = 'uz'\]"]
+        set uz_value [get_domnode_attribute $uz_node v]
+        set rot_x_node [$group selectNodes "./value\[@n = 'rot_x'\]"]
+        set rot_x_value [get_domnode_attribute $rot_x_node v]
+        set rot_y_node [$group selectNodes "./value\[@n = 'rot_y'\]"]
+        set rot_y_value [get_domnode_attribute $rot_y_node v]
+        set rot_z_node [$group selectNodes "./value\[@n = 'rot_z'\]"]
+        set rot_z_value [get_domnode_attribute $rot_z_node v]
+        set format "%5d $ux_value $uy_value $uz_value $rot_x_value $rot_y_value $rot_z_value\n"
+        set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
+        }
 
-
-      
-
-
-
-
+        set number_of_nodes [GiD_WriteCalculationFile nodes -count  $formats_dict]
+        customlib::WriteString "$number_of_nodes # number of nodes with prescribed displacements"
+        
+        if {$number_of_nodes > 0} {
+            customlib::WriteString "# n   Dx:[gid_groups_conds::give_active_unit L]  Dy:[gid_groups_conds::give_active_unit L]  Dz:[gid_groups_conds::give_active_unit L]\
+            Dxx:[gid_groups_conds::give_active_unit Angle]  Dyy:[gid_groups_conds::give_active_unit Angle]  Dzz:[gid_groups_conds::give_active_unit Angle]"
+        customlib::WriteString ""
+        GiD_WriteCalculationFile nodes  $formats_dict
+        customlib::WriteString ""
+        }
+    
         customlib::WriteString "# End load case $i_case of $num_cases"
         customlib::WriteString ""
     }
@@ -347,7 +370,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
 
 
 
-
+    customlib::WriteString "# End Input file."
     customlib::EndWriteFile
 }
 

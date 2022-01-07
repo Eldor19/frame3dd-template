@@ -1,0 +1,99 @@
+GiD Post Results File 1.0
+
+GaussPoints GP_LINE_2 ElemType Linear
+Number Of Gauss Points: 2
+Nodes included
+Natural Coordinates: Internal
+End gausspoints
+GaussPoints GP_LINE_11 ElemType Linear
+Number Of Gauss Points: 11
+Nodes included
+Natural Coordinates: Internal
+End gausspoints
+
+Result Reaction_forces Static 2 Vector OnNodes
+Unit 
+Values
+1 0.000 0.000 108513987.532
+12 -0.000 -0.000 108513996.637
+End values
+
+Result Reaction_moments Static 1 Vector OnNodes
+Unit 
+Values
+1 5956377701.329 12902841413.575 0.000
+12 5956377701.329 -12902841413.575 -0.000
+End values
+
+Result Reaction_moments Static 2 Vector OnNodes
+Unit 
+Values
+1 5956378542.591 12902842462.731 0.000
+12 5956379260.067 -12902843340.505 -0.000
+End values
+
+Result Displacements Static 1 Vector OnNodes
+Unit 
+Values
+1 0 0 0
+2 0.0 0.0 -174.976493
+3 0.0 0.0 -329.388172
+4 0.0 0.0 -440.196382
+5 0.0 0.0 -609.314410
+6 0.0 0.0 -557.717144
+7 0.0 0.0 -718.679059
+8 0.0 0.0 -440.196382
+9 0.0 0.0 -609.314410
+10 0.0 0.0 -174.976493
+11 0.0 0.0 -329.388172
+12 0 0 0
+End values
+
+Result Displacements Static 2 Vector OnNodes
+Unit 
+Values
+1 0 0 0
+2 0.0 0.0 -174.976505
+3 0.0 0.0 -329.388217
+4 0.0 0.0 -440.196417
+5 0.0 0.0 -609.314496
+6 0.0 0.0 -557.717196
+7 0.0 0.0 -718.679176
+8 0.0 0.0 -440.196428
+9 0.0 0.0 -609.314532
+10 0.0 0.0 -174.976512
+11 0.0 0.0 -329.388250
+12 0 0 0
+End values
+
+Result Reaction_forces Static 1 Vector OnNodes
+Unit 
+Values
+1 0.000 0.000 108513982.084
+12 -0.000 -0.000 108513982.084
+End values
+
+Result LocalAxes Static 1 LocalAxes OnGaussPoints GP_LINE_1
+Values
+1 0.0 0.0 6.283185307179586
+2 0.0 0.0 6.283185307179586
+3 0.0 0.0 6.283185307179586
+4 0.0 0.0 6.283185307179586
+5 0.0 0.0 6.283185307179586
+6 0.0 0.0 6.283185307179586
+7 0.0 0.0 6.283185307179586
+8 0.0 0.0 6.283185307179586
+9 0.0 0.0 6.283185307179586
+10 0.0 0.0 6.283185307179586
+11 0.0 0.0 5.497787143782138
+12 0.0 0.0 1.5707963267948966
+13 0.0 0.0 5.497787143782138
+14 0.0 0.0 1.5707963267948966
+15 0.0 0.0 0.7853981633974484
+16 0.0 0.0 4.71238898038469
+17 0.0 0.0 5.497787143782138
+18 0.0 0.0 1.5707963267948966
+19 0.0 0.0 0.7853981633974484
+20 0.0 0.0 4.71238898038469
+21 0.0 0.0 0.7853981633974484
+End values
