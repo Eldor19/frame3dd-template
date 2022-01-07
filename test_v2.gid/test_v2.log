@@ -1,0 +1,14 @@
+
+ FRAME3DD version: 20140514+
+ Analysis of 2D and 3D structural frames with elastic and geometric stiffness.
+ http://frame3dd.sf.net
+ GPL Copyright (C) 1992-2014, Henri P. Gavin
+ This is free software with absolutely no warranty.
+ For details, see the GPL license file, LICENSE.txt
+
+
+ ** Input Data file for Frame3DD - 3D structural frame analysis (N  m  kg  s  K  rad)  ** 
+
+ number of nodes .................................... nN =   2  ... complete
+ number of nodes with reactions ..................... nR =   0  ... complete
+ number of frame elements............................ nE =   1 

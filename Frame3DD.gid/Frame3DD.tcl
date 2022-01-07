@@ -113,7 +113,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
     # mainloop
     set xpath "/Frame3DD_default/container\[@n = 'load_cases' \]/blockdata"  
     set xml_nodes [$document selectNodes $xpath]
-    set xpath "/Frame3DD_default/container\[@n = 'load_cases' \]"  
+    #set xpath "/Frame3DD_default/container\[@n = 'load_cases' \]"  
     # for inside the loop
 
     foreach load_case $xml_nodes {
@@ -136,13 +136,92 @@ proc Frame3DD::WriteCalculationFile { filename } {
         set xml_node [$load_case selectNodes $xpath]
         # hier ganz wichtig, dass das erste Argument $loadcase ist!!!!!
         set g_z [get_domnode_attribute $xml_node v]
-        customlib::WriteString "# gravitational acceleration for self-weigh loading (global)"
+        customlib::WriteString "# gravitational acceleration for self-weight loading (global)"
         customlib::WriteString "# g_x\t g_y\t g_z"
-        customlib::WriteString "[gid_groups_conds::give_active_unit L/T^2]\t [gid_groups_conds::give_active_unit L/T^2]\t [gid_groups_conds::give_active_unit L/T^2]"
+        customlib::WriteString "# [gid_groups_conds::give_active_unit L/T^2]\t [gid_groups_conds::give_active_unit L/T^2]\t [gid_groups_conds::give_active_unit L/T^2]"
         customlib::WriteString "# $g_x\t $g_y\t $g_z"
         customlib::WriteString ""
 
-        # point loads
+        # concentrated loads
+        set xpath "./condition\[@n='concentrated load'\]/group"
+        set groups [$load_case selectNodes $xpath]
+        set number_of_elements 0
+        set formats_dict [dict create ]
+        foreach group $groups {
+        set group_name [get_domnode_attribute $group n]
+        set fx_node [$group selectNodes "./value\[@n = 'fx'\]"]
+        set fx_value [get_domnode_attribute $fx_node v]
+        set fy_node [$group selectNodes "./value\[@n = 'fy'\]"]
+        set fy_value [get_domnode_attribute $fy_node v]
+        set fz_node [$group selectNodes "./value\[@n = 'fz'\]"]
+        set fz_value [get_domnode_attribute $fz_node v]
+        set mx_node [$group selectNodes "./value\[@n = 'mx'\]"]
+        set mx_value [get_domnode_attribute $fx_node v]
+        set my_node [$group selectNodes "./value\[@n = 'my'\]"]
+        set my_value [get_domnode_attribute $my_node v]
+        set mz_node [$group selectNodes "./value\[@n = 'mz'\]"]
+        set mz_value [get_domnode_attribute $mz_node v]
+        set format "%5d $fx_value $fy_value $fz_value $my_value $my_value $mz_value\n"
+        set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
+        }
+
+        set number_of_nodes [GiD_WriteCalculationFile nodes -count  $formats_dict]
+        customlib::WriteString "$number_of_nodes # number of loaded nodes"
+        
+        if {$number_of_nodes > 0} {
+            customlib::WriteString "# n [gid_groups_conds::give_active_unit F]  [gid_groups_conds::give_active_unit F] [gid_groups_conds::give_active_unit F]\
+            [gid_groups_conds::give_active_unit F*L]  [gid_groups_conds::give_active_unit F*L]  [gid_groups_conds::give_active_unit F*L]"
+        customlib::WriteString ""
+        GiD_WriteCalculationFile nodes  $formats_dict
+        }
+
+        # uniform load
+        set xpath "./condition\[@n='uniform load'\]/group"
+        set groups [$load_case selectNodes $xpath]
+        set number_of_elements 0
+        set formats_dict [dict create ]
+        foreach group $groups {
+        set group_name [get_domnode_attribute $group n]
+        set fx_node [$group selectNodes "./value\[@n = 'fx'\]"]
+        set fx_value [get_domnode_attribute $fx_node v]
+        set fy_node [$group selectNodes "./value\[@n = 'fy'\]"]
+        set fy_value [get_domnode_attribute $fy_node v]
+        set fz_node [$group selectNodes "./value\[@n = 'fz'\]"]
+        
+        set format "%5d $fx_value $fy_value $fz_value \n"
+        set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
+        }
+
+        set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats_dict]
+        customlib::WriteString ""
+
+        customlib::WriteString "$number_of_elements # number of uniform loads"
+        
+        if {$number_of_elements > 0} {
+            customlib::WriteString "# n [gid_groups_conds::give_active_unit F/L]  [gid_groups_conds::give_active_unit F/L]\
+         [gid_groups_conds::give_active_unit F/L]"
+        customlib::WriteString ""
+        GiD_WriteCalculationFile elements -elemtype Linear  $formats_dict
+        }
+
+
+
+        #set rel_path "."
+        ##set rootpath "$xpath/blockdata\[@n='case' and @name='Case $case'\]"
+        #set sub [$load_case selectNodes $rel_path]
+        #set cl_list [list "concentrated load"]
+        #set cl_formats [list {"%5d\t" "node" "id"} {"%13.5e " "property" "fx"} {"%13.5e " "property" "fy"
+        #} {"%13.5e " "property" "fz"} {"%13.5e  " "property" "mx"} {"%13.5e  " "property" "my"} {"%13.5e " "property" "mz"}]
+        #set num_cl [customlib::GetNumberOfNodes $sub $cl_list]
+        # die reihenfolge war vorher umgedreht, offensichtlich aber beides falsch...
+
+        #customlib::WriteString "$num_cl # number of loaded nodes"
+        #customlib::WriteString "# . \t [gid_groups_conds::give_active_unit F]\t [gid_groups_conds::give_active_unit F]\t[gid_groups_conds::give_active_unit F]\
+            [gid_groups_conds::give_active_unit F*L]\t [gid_groups_conds::give_active_unit F*L]\t [gid_groups_conds::give_active_unit F*L]"
+        #customlib::WriteString ""
+        #customlib::WriteNodes  $cl_list $cl_formats 
+        #customlib::WriteString ""
+
 
 
 

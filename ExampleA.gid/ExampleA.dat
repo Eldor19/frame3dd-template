@@ -72,19 +72,37 @@ Input Data file for Frame3DD - 3D structural frame analysis (lbf, in, lb, s, °F,
 2 # number of static load cases
 # Begin load case 1 of 2
 
-# gravitational acceleration for self-weigh loading (global)
+# gravitational acceleration for self-weight loading (global)
 # g_x	 g_y	 g_z
-in/s^2	 in/s^2	 in/s^2
+# in/s^2	 in/s^2	 in/s^2
 # 0.0	 0.0	 0
 
+5 # number of loaded nodes
+# n lbf  lbf lbf lbf*in  lbf*in  lbf*in
+
+    2 0.0 -20 0.0 0.0 0.0 0.0
+    4 0.0 -10 0.0 0.0 0.0 0.0
+    6 0.0 -20 0.0 0.0 0.0 0.0
+    8 0.0 -20 0.0 0.0 0.0 0.0
+   10 0.0 -10 0.0 0.0 0.0 0.0
+
+0 # number of uniform loads
 # End load case 1 of 2
 
 # Begin load case 2 of 2
 
-# gravitational acceleration for self-weigh loading (global)
+# gravitational acceleration for self-weight loading (global)
 # g_x	 g_y	 g_z
-in/s^2	 in/s^2	 in/s^2
+# in/s^2	 in/s^2	 in/s^2
 # 0	 0	 0
 
+3 # number of loaded nodes
+# n lbf  lbf lbf lbf*in  lbf*in  lbf*in
+
+    4 20 0.0 0.0 0.0 0.0 0.0
+    6 10 0.0 0.0 0.0 0.0 0.0
+    8 20 0.0 0.0 0.0 0.0 0.0
+
+0 # number of uniform loads
 # End load case 2 of 2
 
