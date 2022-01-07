@@ -39,9 +39,16 @@ Input Data file for Frame3DD - 3D structural frame analysis (N, m, kg, s, K, rad
     2 20 0 0 0 0 0
 
 1 # number of uniform loads
-# n N/m  N/m N/m
+# e N/m  N/m N/m
 
     1 2 03 0 
+
+1 # number of trapezoidal loads
+# e x1:m  x2:N w1:N/m  w2:N/m
+
+    1   0 2 5 6 	# location and loading - local x-axis
+ 	7 5 9 1 	# location and loading - local y-axis
+ 	2 3 4 5 	# location and loading - local z-axis
 # End load case 1 of 2
 
 # Begin load case 2 of 2
@@ -52,7 +59,7 @@ Input Data file for Frame3DD - 3D structural frame analysis (N, m, kg, s, K, rad
 # 0	 0	 -9.81
 
 0 # number of loaded nodes
-
 0 # number of uniform loads
+0 # number of trapezoidal loads
 # End load case 2 of 2
 

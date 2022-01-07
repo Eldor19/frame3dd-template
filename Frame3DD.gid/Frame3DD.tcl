@@ -173,6 +173,8 @@ proc Frame3DD::WriteCalculationFile { filename } {
             [gid_groups_conds::give_active_unit F*L]  [gid_groups_conds::give_active_unit F*L]  [gid_groups_conds::give_active_unit F*L]"
         customlib::WriteString ""
         GiD_WriteCalculationFile nodes  $formats_dict
+        customlib::WriteString ""
+
         }
 
         # uniform load
@@ -193,15 +195,71 @@ proc Frame3DD::WriteCalculationFile { filename } {
         }
 
         set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats_dict]
-        customlib::WriteString ""
 
         customlib::WriteString "$number_of_elements # number of uniform loads"
         
         if {$number_of_elements > 0} {
-            customlib::WriteString "# n [gid_groups_conds::give_active_unit F/L]  [gid_groups_conds::give_active_unit F/L]\
+            customlib::WriteString "# e [gid_groups_conds::give_active_unit F/L]  [gid_groups_conds::give_active_unit F/L]\
          [gid_groups_conds::give_active_unit F/L]"
         customlib::WriteString ""
         GiD_WriteCalculationFile elements -elemtype Linear  $formats_dict
+        customlib::WriteString ""
+
+        }
+
+        # trapezoidally distirbuted load
+        set xpath "./condition\[@n='trapezoidal load'\]/group"
+        set groups [$load_case selectNodes $xpath]
+        set number_of_elements 0
+        set formats_dict [dict create ]
+        foreach group $groups {
+        set group_name [get_domnode_attribute $group n]
+        set p1_x_node [$group selectNodes "./value\[@n = 'p1_x'\]"]
+        set p1_x_value [get_domnode_attribute $p1_x_node v]
+        set p2_x_node [$group selectNodes "./value\[@n = 'p2_x'\]"]
+        set p2_x_value [get_domnode_attribute $p2_x_node v]
+        set p1_fx_node [$group selectNodes "./value\[@n = 'p1_fx'\]"]
+        set p1_fx_value [get_domnode_attribute $p1_fx_node v]
+        set p2_fx_node [$group selectNodes "./value\[@n = 'p2_fx'\]"]
+        set p2_fx_value [get_domnode_attribute $p2_fx_node v]
+
+        set p1_y_node [$group selectNodes "./value\[@n = 'p1_y'\]"]
+        set p1_y_value [get_domnode_attribute $p1_y_node v]
+        set p2_y_node [$group selectNodes "./value\[@n = 'p2_y'\]"]
+        set p2_y_value [get_domnode_attribute $p2_y_node v]
+        set p1_fy_node [$group selectNodes "./value\[@n = 'p1_fy'\]"]
+        set p1_fy_value [get_domnode_attribute $p1_fy_node v]
+        set p2_fy_node [$group selectNodes "./value\[@n = 'p2_fy'\]"]
+        set p2_fy_value [get_domnode_attribute $p2_fy_node v]
+
+        set p1_z_node [$group selectNodes "./value\[@n = 'p1_z'\]"]
+        set p1_z_value [get_domnode_attribute $p1_z_node v]
+        set p2_z_node [$group selectNodes "./value\[@n = 'p2_z'\]"]
+        set p2_z_value [get_domnode_attribute $p2_z_node v]
+        set p1_fz_node [$group selectNodes "./value\[@n = 'p1_fz'\]"]
+        set p1_fz_value [get_domnode_attribute $p1_fz_node v]
+        set p2_fz_node [$group selectNodes "./value\[@n = 'p2_fz'\]"]
+        set p2_fz_value [get_domnode_attribute $p2_fz_node v]
+        
+        
+        
+        set format "%5d   $p1_x_value $p2_x_value $p1_fx_value $p2_fx_value \t# location and loading - local x-axis\n\
+               \t$p1_y_value $p2_y_value $p1_fy_value $p2_fy_value \t# location and loading - local y-axis\n\
+               \t$p1_z_value $p2_z_value $p1_fz_value $p2_fz_value \t# location and loading - local z-axis\n"
+        set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
+        }
+
+        set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats_dict]
+        #customlib::WriteString ""
+        customlib::WriteString "$number_of_elements # number of trapezoidal loads"
+        
+        if {$number_of_elements > 0} {
+            customlib::WriteString "# e x1:[gid_groups_conds::give_active_unit L]  x2:[gid_groups_conds::give_active_unit F]\
+         w1:[gid_groups_conds::give_active_unit F/L]  w2:[gid_groups_conds::give_active_unit F/L]"
+        customlib::WriteString ""
+        GiD_WriteCalculationFile elements -elemtype Linear  $formats_dict
+        customlib::WriteString ""
+
         }
 
 
