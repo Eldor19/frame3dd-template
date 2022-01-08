@@ -6,39 +6,3 @@
  This is free software with absolutely no warranty.
  For details, see the GPL license file, LICENSE.txt
 
-
- ** Input Data file for Frame3DD - 3D structural frame analysis (N  m  kg  s  K  rad)  ** 
-
- number of nodes .................................... nN =  12  ... complete
- number of nodes with reactions ..................... nR =   2  ... complete
- number of frame elements............................ nE =  21  ... complete
- number of load cases ............................... nL =   2 
- load case 1 of 2:                                             
-  number of loaded nodes ............................ nF =   0
-  number of uniformly distributed loads ............. nU =   0
-  number of trapezoidally distributed loads ......... nW =   0
-  number of concentrated frame element point loads .. nP =   0
-  number of temperature changes ..................... nT =   0
-  number of prescribed displacements ................ nD =   0
- load case 2 of 2:                                             
-  number of loaded nodes ............................ nF =   1
-  number of uniformly distributed loads ............. nU =   0
-  number of trapezoidally distributed loads ......... nW =   0
-  number of concentrated frame element point loads .. nP =   0
-  number of temperature changes ..................... nT =   0
-  number of prescribed displacements ................ nD =   0
-                                                      load data ... complete
- number of dynamic modes ............................ nM =   0
-                                                      mass data ... complete
- missing matrix condensation data 
-
- Load Case 1 of 2 ...                                           
- Linear Elastic Analysis ... Mechanical Loads
-  RMS relative equilibrium error  = 1.689e-014  < tol = 1.0e-009  ** converged ** 
-  RMS residual incremental displ. = 6.295e-015 ................. ok. 
-
- Load Case 2 of 2 ...                                           
- Linear Elastic Analysis ... Mechanical Loads
-  RMS relative equilibrium error  = 2.253e-014  < tol = 1.0e-009  ** converged ** 
-  RMS residual incremental displ. = 1.157e-014 ................. just ok. 
-
