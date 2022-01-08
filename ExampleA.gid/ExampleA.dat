@@ -1,20 +1,20 @@
-Input Data file for Frame3DD - 3D structural frame analysis (N, m, kg, s, K, rad)
+Input Data file for Frame3DD - 3D structural frame analysis (N, cm, kg, s, K, °)
 
 # node data
 12 # number of nodes
-#.node	 x		y		z		r	 units: m
+#.node	 x		y		z		r	 units: cm
 
-    1    7.20000e+02    0.00000e+00    0.00000e+00	0.0
-    2    6.00000e+02    0.00000e+00    0.00000e+00	0.0
-    3    6.00000e+02    1.20000e+02    0.00000e+00	0.0
-    4    4.80000e+02    0.00000e+00    0.00000e+00	0.0
-    5    4.80000e+02    1.20000e+02    0.00000e+00	0.0
-    6    3.60000e+02    0.00000e+00    0.00000e+00	0.0
-    7    3.60000e+02    1.20000e+02    0.00000e+00	0.0
-    8    2.40000e+02    0.00000e+00    0.00000e+00	0.0
-    9    2.40000e+02    1.20000e+02    0.00000e+00	0.0
-   10    1.20000e+02    0.00000e+00    0.00000e+00	0.0
-   11    1.20000e+02    1.20000e+02    0.00000e+00	0.0
+    1    7.20000e+00    0.00000e+00    0.00000e+00	0.0
+    2    6.00000e+00    0.00000e+00    0.00000e+00	0.0
+    3    6.00000e+00    1.20000e+00    0.00000e+00	0.0
+    4    4.80000e+00    0.00000e+00    0.00000e+00	0.0
+    5    4.80000e+00    1.20000e+00    0.00000e+00	0.0
+    6    3.60000e+00    0.00000e+00    0.00000e+00	0.0
+    7    3.60000e+00    1.20000e+00    0.00000e+00	0.0
+    8    2.40000e+00    0.00000e+00    0.00000e+00	0.0
+    9    2.40000e+00    1.20000e+00    0.00000e+00	0.0
+   10    1.20000e+00    0.00000e+00    0.00000e+00	0.0
+   11    1.20000e+00    1.20000e+00    0.00000e+00	0.0
    12    0.00000e+00    0.00000e+00    0.00000e+00	0.0
 
 # reaction data
@@ -27,7 +27,7 @@ Input Data file for Frame3DD - 3D structural frame analysis (N, m, kg, s, K, rad
 # frame element data
 21 # number of frame elements
 #   e	 n1    n2   Ax		 Asy	      Asz	   Jxx	   	Iyy	     Izz	    E	        G	     roll	    density
-#   .	 .     .    m^2	 m^2	       m^2 	    m^4	  m^4	      m^4	     Pa		 Pa	     rad	   kg/m^3
+#   .	 .     .    cm^2	 cm^2	       cm^2 	    cm^4	  cm^4	      cm^4	     Pa		 Pa	     °	   kg/cm^3
 
     1    12    10   1.00000e+00  1.00000e+00  1.00000e+00  1.00000e+00  1.00000e+00  1.00000e+00  2.10000e+11  7.93000e+10  1.74533e-02  7.85000e+03
     2    10     8   1.00000e+00  1.00000e+00  1.00000e+00  1.00000e+00  1.00000e+00  1.00000e+00  2.10000e+11  7.93000e+10  1.74533e-02  7.85000e+03
@@ -63,28 +63,54 @@ Input Data file for Frame3DD - 3D structural frame analysis (N, m, kg, s, K, rad
 
 # gravitational acceleration for self-weight loading (global)
 # g_x	 g_y	 g_z
-# m/s^2	 m/s^2	 m/s^2
- 0	 0	 -9.81
+# cm/s^2	 cm/s^2	 cm/s^2
+ 0.0	 0.0	 0.1
 
-0 # number of loaded nodes
-0 # number of uniform loads
-0 # number of trapezoidal loads
-0 # number of internal concentrated loads
-0 # number of temperature loads
-0 # number of nodes with prescribed displacements
+1 # number of loaded nodes
+# n N  N N N*cm  N*cm  N*cm
+
+    9 4.448222 1000.0  1.0 200.0  300.0 9.999999999999999e-5
+
+1 # number of uniform loads
+# e N/cm  N/cm N/cm
+
+    8 1000.0 1000.0  0.01 
+
+1 # number of trapezoidal loads
+# e x1:cm  x2:N w1:N/cm  w2:N/cm
+
+   15   1.0 1.0  0.01 1000.0 	# location and loading - local x-axis
+ 	9.999999999999999e-5 0.1  10.0 1000.0 	# location and loading - local y-axis
+ 	1.0 100.0  10.0 1000.0 	# location and loading - local z-axis
+
+1 # number of internal concentrated loads
+# e Px:N  Py:N Pz:N x:cm
+
+   19    1000.0  1e-5  1000.0 9.999999999999999e-5 
+
+1 # number of temperature loads
+# e alpha:1/K  hy:cm hz:cm Ty+:K  Ty-:K Tz+:K  Tz-:K
+
+    9    1.0 100.0  0.0 0.0  274.15 0.0  274.15 
+
+1 # number of nodes with prescribed displacements
+# n   Dx:cm  Dy:cm  Dz:cm Dxx:°  Dyy:°  Dzz:°
+
+    3 9.999999999999999e-5 9.999999999999999e-5  9.999999999999999e-5 1.0  1.0 1.0
+
 # End load case 1 of 2
 
 # Begin load case 2 of 2
 
 # gravitational acceleration for self-weight loading (global)
 # g_x	 g_y	 g_z
-# m/s^2	 m/s^2	 m/s^2
- 0	 0	 -9.81
+# cm/s^2	 cm/s^2	 cm/s^2
+ 0.0	 0.0	 -981.0
 
 1 # number of loaded nodes
-# n N  N N N*m  N*m  N*m
+# n N  N N N*cm  N*cm  N*cm
 
-    9 0 0 -20 0 0 0
+    9 0.0 0.0  -20.0 0.0  0.0 0.0
 
 0 # number of uniform loads
 0 # number of trapezoidal loads
