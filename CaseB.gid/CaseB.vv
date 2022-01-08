@@ -1,0 +1,37 @@
+BeginZE D:/UPC_studies/Computational_Mechanics_Tools/Gid_homework/frame3dd-template/CaseB.gid/CaseB.vv
+   x -2726.449462890625 7280.697265625
+   y 5686.931640625 -1644.7965087890625
+   z -830 430
+   e 10
+   v 0.348569729704521658 -0.014753243179821348 0.138941213219777593
+   r 0.926810026174948898
+   m 0.960955381393432617 -0.267829298973083496 0.0695144981145858765 0 0.247259154915809631 0.718388974666595459 -0.650215506553649902 0 0.124208308756351471 0.642016172409057617 0.756562948226928711 0 0 0 0 1
+   c 0 0 200
+   pd 0
+   pno 0
+   pfo 0
+   pf 4
+   pv 0
+   NowUse 0
+   DrawingType 0
+   LightVector 90 90 150 0
+   OGLShadow(UseShadows) 0
+   OGLShadow(RenderMode) RenderNice
+   OGLShadow(ShadowBias) -0.002
+   OGLShadow(AmbientShadows) 1
+   OGLShadow(UseFBO) 1
+   OGLShadow(FBOSize) 2048
+   OGLShadow(DimmedLightFactor) 0.02
+   OGLStereo(UseStereo) 0
+   OGLStereo(RelativeEyeDistance) 1
+   OGLStereo(FlipEyes) 0
+   OGLStereo(StereoMode) AnaglyphColors
+   OGLStereo(EyeDistance) 0.075
+   OGLStereo(LeftEyeDistance) 1 0 0 1
+   OGLStereo(RightEyeDistance) 0 1 1 1
+EndZE D:/UPC_studies/Computational_Mechanics_Tools/Gid_homework/frame3dd-template/CaseB.gid/CaseB.vv
+
+BeginMirror
+   Mirror 0 Angle 0.0 AngleFake -15.0 SizeFactor 2.0 HeightOffset 0.25 Color #d9e5f24d Backlight Off EdgeStyle No Type Scene DrawMode Mirror
+EndMirror
+
