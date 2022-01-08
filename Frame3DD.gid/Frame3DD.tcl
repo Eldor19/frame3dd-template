@@ -21,7 +21,10 @@ proc Frame3DD::WriteCalculationFile { filename } {
     customlib::WriteString "[GiD_Info Mesh NumNodes] # number of nodes"
     customlib::WriteString "#.node\t x\t\ty\t\tz\t\tr\t units: [gid_groups_conds::give_active_unit L]"
     customlib::WriteString ""
-    customlib::WriteCoordinates "%5d %14.5e %14.5e %14.5e\t0.0\n"
+    set format "%5d %14.5e %14.5e %14.5e\t0.0\n"
+    GiD_WriteCalculationFile coordinates  $format
+
+    #customlib::WriteCoordinates "%5d %14.5e %14.5e %14.5e\t0.0\n"
 
     #################### Restraints #############################
     customlib::WriteString ""
@@ -182,7 +185,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
         set g_z [get_domnode_attribute $xml_node_z v]
         customlib::WriteString "# gravitational acceleration for self-weight loading (global)"
         customlib::WriteString "# g_x\t g_y\t g_z"
-        customlib::WriteString "# [gid_groups_conds::give_active_unit L/T^2]\t [gid_groups_conds::give_active_unit L/T^2]\t [gid_groups_conds::give_active_unit L/T^2]"
+        customlib::WriteString "# [gid_groups_conds::give_active_unit L/T^2] [gid_groups_conds::give_active_unit L/T^2] [gid_groups_conds::give_active_unit L/T^2]"
         customlib::WriteString " [gid_groups_conds::convert_value_to_active $xml_node_x]\t [gid_groups_conds::convert_value_to_active $xml_node_y]\t [gid_groups_conds::convert_value_to_active $xml_node_z]"
         customlib::WriteString ""
 

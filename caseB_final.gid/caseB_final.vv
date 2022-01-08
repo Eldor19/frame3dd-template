@@ -1,0 +1,33 @@
+BeginZE D:/UPC_studies/Computational_Mechanics_Tools/Gid_homework/frame3dd-template/caseB_final.gid/caseB_final.vv
+   x -3569.43896484375 2361.58642578125
+   y 3920.662841796875 -3587.4375
+   z -4943.41650390625 4543.41650390625
+   e 1581.1387939453125
+   v 0.567703511282969808 0.0372824855254627052 -0.110213902821725065
+   r 0.814969714268469758
+   m 0.972925841808319092 0.22197277843952179 -0.0643694475293159485 0 -0.137311190366744995 0.331131249666213989 -0.933540403842926025 0 -0.185905829071998596 0.917104244232177734 0.35264548659324646 0 0 0 0 1
+   c 0 0 200
+   pd 0
+   pno 0
+   pfo 0
+   pf 4
+   pv 0
+   NowUse 1
+   DrawingType 0
+   LightVector 90 90 150 0
+   OGLShadow(UseShadows) 0
+   OGLShadow(RenderMode) RenderNice
+   OGLShadow(ShadowBias) -0.002
+   OGLShadow(AmbientShadows) 1
+   OGLShadow(UseFBO) 1
+   OGLShadow(FBOSize) 2048
+   OGLShadow(DimmedLightFactor) 0.02
+   OGLStereo(UseStereo) 0
+   OGLStereo(RelativeEyeDistance) 1
+   OGLStereo(FlipEyes) 0
+   OGLStereo(StereoMode) AnaglyphColors
+   OGLStereo(EyeDistance) 0.075
+   OGLStereo(LeftEyeDistance) 1 0 0 1
+   OGLStereo(RightEyeDistance) 0 1 1 1
+EndZE D:/UPC_studies/Computational_Mechanics_Tools/Gid_homework/frame3dd-template/caseB_final.gid/caseB_final.vv
+
