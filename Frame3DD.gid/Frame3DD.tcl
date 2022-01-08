@@ -425,6 +425,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
 
 
 
+    customlib::WriteString "0 # number of dynamic modes"
 
     customlib::WriteString "# End Input file."
     customlib::EndWriteFile
