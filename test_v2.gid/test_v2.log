@@ -7,8 +7,26 @@
  For details, see the GPL license file, LICENSE.txt
 
 
- ** Input Data file for Frame3DD - 3D structural frame analysis (N  m  kg  s  K  rad)  ** 
+ ** Input Data file for Frame3DD - 3D structural frame analysis (N  µm  kg  s  K  rad MPa)  ** 
 
  number of nodes .................................... nN =   2  ... complete
  number of nodes with reactions ..................... nR =   1  ... complete
- number of frame elements............................ nE =   1 
+ number of frame elements............................ nE =   1  ... complete
+ number of load cases ............................... nL =   1 
+ load case 1 of 1:                                             
+  number of loaded nodes ............................ nF =   1
+  number of uniformly distributed loads ............. nU =   0
+  number of trapezoidally distributed loads ......... nW =   0
+  number of concentrated frame element point loads .. nP =   0
+  number of temperature changes ..................... nT =   0
+  number of prescribed displacements ................ nD =   0
+                                                      load data ... complete
+ number of dynamic modes ............................ nM =   0
+                                                      mass data ... complete
+ missing matrix condensation data 
+
+ Load Case 1 of 1 ...                                           
+ Linear Elastic Analysis ... Mechanical Loads
+  RMS relative equilibrium error  = 2.841e+000  > tol = 1.0e-009  !! not converged !! 
+  RMS residual incremental displ. = 1.608e-025 ................. *  woo-hoo!   * 
+

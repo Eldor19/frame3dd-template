@@ -1,11 +1,11 @@
-Input Data file for Frame3DD - 3D structural frame analysis (N, m, kg, s, K, rad)
+Input Data file for Frame3DD - 3D structural frame analysis (N, µm, kg, s, K, rad MPa)
 
 # node data
 2 # number of nodes
-#.node	 x		y		z		r	 units: m
+#.node	 x		y		z		r	 units: µm
 
-    1    8.97858e-01    2.48764e+00    0.00000e+00	0.0
-    2   -2.01812e+00   -2.14168e-01    0.00000e+00	0.0
+    1    8.97858e-07    2.48764e-06    0.00000e+00	0.0
+    2   -2.01812e-06   -2.14168e-07    0.00000e+00	0.0
 
 # reaction data
 1 # number of nodes with reactions
@@ -13,10 +13,11 @@ Input Data file for Frame3DD - 3D structural frame analysis (N, m, kg, s, K, rad
 
     2	 1 1 1 1  1  1 
 
-# frame element data
 1 # number of frame elements
-#   e	 n1    n2   Ax		 Asy	      Asz	   Jxx	   	Iyy	     Izz	    E	        G	     roll	    density
-#   .	 .     .    m^2	 m^2	       m^2 	    m^4	  m^4	      m^4	     Pa		 Pa	     rad	   kg/m^3
+#   e	 n1    n2   Ax	 Asy	 Asz	 Jxx	 Iyy	 Izz	 E	 G	 roll	 density
+#   .	 .     .    µm^2	 µm^2	 µm^2 	 µm^4	 µm^4	  µm^4	  MPa	 MPa	 rad	 kg/µm^3
+
+    1     2     1 100000000.0 100000000.0  100000000.0 40000000000000010.0  50000000000000010.0 60000000000000024.0  210000.0 79300.0 0.0  7.85e-15
 
 
 # Options
@@ -26,54 +27,24 @@ Input Data file for Frame3DD - 3D structural frame analysis (N, m, kg, s, K, rad
 1 	 # zoom scale for 3D plotting
 -1 	 # x-axis increment for internal forces. If dx is -1 then internal force calculations are skipped.
 
-2 # number of static load cases
-# Begin load case 1 of 2
+1 # number of static load cases
+# Begin load case 1 of 1
 
 # gravitational acceleration for self-weight loading (global)
 # g_x	 g_y	 g_z
-# m/s^2	 m/s^2	 m/s^2
-# 0	 0	 -9.81
+# µm/s^2	 µm/s^2	 µm/s^2
+ 0.0	 0.0	 -9810000.000000002
 
 1 # number of loaded nodes
-# n N  N N N*m  N*m  N*m
+# n N  N N N*µm  N*µm  N*µm
 
-    2 20 0 0 0 0 0
+    1 0.0 -10.0  0.0 0.0  0.0 0.0
 
-1 # number of uniform loads
-# e N/m  N/m N/m
-
-    1 2 03 400 
-
-1 # number of trapezoidal loads
-# e x1:m  x2:N w1:N/m  w2:N/m
-
-    1   0 2 5 6 	# location and loading - local x-axis
- 	7 5 9 1 	# location and loading - local y-axis
- 	2 3 4 5 	# location and loading - local z-axis
-
-1 # number of internal concentrated loads
-# e Px:N  Py:N Pz:N x:m
-
-    1    3 2 1 0.2 
-
-1 # number of internal concentrated loads
-# e alpha:1/K  hy:m hz:m Ty+:K  Ty-:K Tz+:K  Tz-:K
-
-    1    1 2 4 2 0.1 98 2 
-
-# End load case 1 of 2
-
-# Begin load case 2 of 2
-
-# gravitational acceleration for self-weight loading (global)
-# g_x	 g_y	 g_z
-# m/s^2	 m/s^2	 m/s^2
-# 0	 0	 -9.81
-
-0 # number of loaded nodes
 0 # number of uniform loads
 0 # number of trapezoidal loads
 0 # number of internal concentrated loads
-0 # number of internal concentrated loads
-# End load case 2 of 2
+0 # number of temperature loads
+0 # number of nodes with prescribed displacements
+# End load case 1 of 1
 
+# End Input file.

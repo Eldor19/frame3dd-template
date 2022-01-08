@@ -13,7 +13,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
     customlib::WriteString "Input Data file for Frame3DD - 3D structural frame analysis\
     ([gid_groups_conds::give_active_unit F], [gid_groups_conds::give_active_unit L],\
     [gid_groups_conds::give_active_unit M], [gid_groups_conds::give_active_unit T],\
-    [gid_groups_conds::give_active_unit Temp], [gid_groups_conds::give_active_unit Angle])" 
+    [gid_groups_conds::give_active_unit Temp], [gid_groups_conds::give_active_unit Angle] [gid_groups_conds::give_active_unit P])" 
 
     #################### COORDINATES ############################ 
     customlib::WriteString ""
@@ -34,31 +34,75 @@ proc Frame3DD::WriteCalculationFile { filename } {
     customlib::WriteString "#.node\t x y z xx yy zz\t 1=fixed, 0=free"
     customlib::WriteString ""
     customlib::WriteNodes $restraints_list $restraints_formats 
+    customlib::WriteString ""
+
     ################### Frame Data ############################## 
-    #set condition_name "frameData"
-    #set condition_formats [list {"%1d" "element" "id"} {"%13.5e" "property" "Ax"} {"%13.5e" "property" "Asy"} 
-    #{"%13.5e" "property" "Asz"} {"%13.5e" "property" "Jxx"} {"%13.5e" "property" "Iyy"} {"%13.5e" "property" "Izz"}
-     #{"%13.5e" "material" "E"} {"%13.5e" "material" "G"} {"%13.5e" "property" "roll"} {"%13.5e" "material" "Density"}]
-    #set formats [customlib::GetElementsFormats $condition_name $condition_formats]
-    #set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats]
-    #customlib::WriteConnectivities $condition_name $formats "" active
+    
+    # customlib::WriteString ""
+    # customlib::WriteString "# frame element data"
+    # set frames_list [list "frame_data"]  
+    # ###################################################  change later to frame_data (changed .spd!)
+    # customlib::InitMaterials $frames_list 
+    # set frame_format [list {"%5d" "element" "id"} {"%5d" "element" "connectivities"}  {"%13.5e" "property" "Ax"
+    # } {"%13.5e" "property" "Asy"} {"%13.5e" "property" "Asz"} {"%13.5e" "property" "Jxx"} {"%13.5e" "property" "Iyy"
+    # } {"%13.5e" "property" "Izz"} {"%13.5e" "material" "E"} {"%13.5e" "material" "G"} {"%13.5e" "property" "roll"
+    # } {"%13.5e" "material" "Density"}]
+    # #set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats]
+    # customlib::WriteString "[GiD_Info Mesh NumElements] # number of frame elements"
+    # customlib::WriteString "#   e\t n1    n2   Ax\t\t Asy\t      Asz\t   Jxx\t   \tIyy\t     Izz\t    E\t        G\t     roll\t    density"
+    # customlib::WriteString "#   .\t .     .    [gid_groups_conds::give_active_unit L]^2\t [gid_groups_conds::give_active_unit L]^2\t       [gid_groups_conds::give_active_unit L]^2\
+    #     \t    [gid_groups_conds::give_active_unit L]^4\t  [    gid_groups_conds::give_active_unit L]^4\t      [gid_groups_conds::give_active_unit L]^4\t    \
+    #     [gid_groups_conds::give_active_unit P]\t\t [gid_groups_conds::give_active_unit P]\t     [gid_groups_conds::give_active_unit Angle]\t   [gid_groups_conds::give_active_unit M/L^3]"
+    # customlib::WriteString ""
+    # customlib::WriteConnectivities $frames_list $frame_format 
+    set document [$::gid_groups_conds::doc documentElement]
+    set xpath "/Frame3DD_default/condition\[@n='frame_data'\]/group"
+    set groups [$document selectNodes $xpath]
+    set number_of_elements 0
+    set formats_dict [dict create ]
+    foreach group $groups {
+        set group_name [get_domnode_attribute $group n]
+        set Ax_node [$group selectNodes "./value\[@n = 'Ax'\]"]
+        set Asy_node [$group selectNodes "./value\[@n = 'Asy'\]"]
+        set Asz_node [$group selectNodes "./value\[@n = 'Asz'\]"]
+        set Jxx_node [$group selectNodes "./value\[@n = 'Jxx'\]"]
+        set Iyy_node [$group selectNodes "./value\[@n = 'Iyy'\]"]
+        set Izz_node [$group selectNodes "./value\[@n = 'Izz'\]"]
+        set roll_node [$group selectNodes "./value\[@n = 'roll'\]"]
+
+        # material
+        set mat_node [$group selectNodes "./value\[@n = 'material'\]"]
+        set mat_name [get_domnode_attribute $mat_node v]
+        set xpath_density  "/Frame3DD_default/container\[@n='materials'\]/blockdata\[@name='$mat_name'\]/value\[@n='Density'\]"
+        set xpath_E  "/Frame3DD_default/container\[@n='materials'\]/blockdata\[@name='$mat_name'\]/value\[@n='E'\]"
+        set xpath_G  "/Frame3DD_default/container\[@n='materials'\]/blockdata\[@name='$mat_name'\]/value\[@n='G'\]"
+
+        set density_node [$document selectNodes $xpath_density]
+        set E_node [$document selectNodes $xpath_E]
+        set G_node [$document selectNodes $xpath_G]
+
+
+        set format "%5d %5d %5d [gid_groups_conds::convert_value_to_active $Ax_node] [gid_groups_conds::convert_value_to_active $Asy_node] \
+        [gid_groups_conds::convert_value_to_active $Asz_node] [gid_groups_conds::convert_value_to_active $Jxx_node] \
+        [gid_groups_conds::convert_value_to_active $Iyy_node] [gid_groups_conds::convert_value_to_active $Izz_node] \
+        [gid_groups_conds::convert_value_to_active $E_node] [gid_groups_conds::convert_value_to_active $G_node] [gid_groups_conds::convert_value_to_active $roll_node] \
+        [gid_groups_conds::convert_value_to_active $density_node]\n"
+        set formats_dict [dict merge $formats_dict [dict create $group_name $format]]
+    }
+
+    set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats_dict]
+    customlib::WriteString "$number_of_elements # number of frame elements"
+    customlib::WriteString "#   e\t n1    n2   Ax\t Asy\t Asz\t Jxx\t Iyy\t Izz\t E\t G\t roll\t density"
+    customlib::WriteString "#   .\t .     .    [gid_groups_conds::give_active_unit L]^2\t [gid_groups_conds::give_active_unit L]^2\t [gid_groups_conds::give_active_unit L]^2\
+        \t [gid_groups_conds::give_active_unit L]^4\t [gid_groups_conds::give_active_unit L]^4\t  [gid_groups_conds::give_active_unit L]^4\t \
+    [gid_groups_conds::give_active_unit P]\t [gid_groups_conds::give_active_unit P]\t [gid_groups_conds::give_active_unit Angle]\t [gid_groups_conds::give_active_unit M/L^3]"
     customlib::WriteString ""
-    customlib::WriteString "# frame element data"
-    set frames_list [list "frame_data"]  
-    ###################################################  change later to frame_data (changed .spd!)
-    customlib::InitMaterials $frames_list 
-    set frame_format [list {"%5d" "element" "id"} {"%5d" "element" "connectivities"}  {"%13.5e" "property" "Ax"
-    } {"%13.5e" "property" "Asy"} {"%13.5e" "property" "Asz"} {"%13.5e" "property" "Jxx"} {"%13.5e" "property" "Iyy"
-    } {"%13.5e" "property" "Izz"} {"%13.5e" "material" "E"} {"%13.5e" "material" "G"} {"%13.5e" "property" "roll"
-    } {"%13.5e" "material" "Density"}]
-    #set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats]
-    customlib::WriteString "[GiD_Info Mesh NumElements] # number of frame elements"
-    customlib::WriteString "#   e\t n1    n2   Ax\t\t Asy\t      Asz\t   Jxx\t   \tIyy\t     Izz\t    E\t        G\t     roll\t    density"
-    customlib::WriteString "#   .\t .     .    [gid_groups_conds::give_active_unit L]^2\t [gid_groups_conds::give_active_unit L]^2\t       [gid_groups_conds::give_active_unit L]^2\
-        \t    [gid_groups_conds::give_active_unit L]^4\t  [    gid_groups_conds::give_active_unit L]^4\t      [gid_groups_conds::give_active_unit L]^4\t    \
-        [gid_groups_conds::give_active_unit P]\t\t [gid_groups_conds::give_active_unit P]\t     [gid_groups_conds::give_active_unit Angle]\t   [gid_groups_conds::give_active_unit M/L^3]"
+    GiD_WriteCalculationFile connectivities -elemtype Linear  $formats_dict
     customlib::WriteString ""
-    customlib::WriteConnectivities $frames_list $frame_format 
+        
+
+
+
 
     ###################################### Options ###############################################
     #set document [$::gid_groups_conds::doc documentElement]

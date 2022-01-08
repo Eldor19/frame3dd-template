@@ -1,0 +1,45 @@
+
+ FRAME3DD version: 20140514+
+ Analysis of 2D and 3D structural frames with elastic and geometric stiffness.
+ http://frame3dd.sf.net
+ GPL Copyright (C) 1992-2014, Henri P. Gavin
+ This is free software with absolutely no warranty.
+ For details, see the GPL license file, LICENSE.txt
+
+
+ ** Input Data file for Frame3DD - 3D structural frame analysis (lbf  in  lb  s  °F  ° lbf/in^2)  ** 
+
+ number of nodes .................................... nN =  12  ... complete
+ number of nodes with reactions ..................... nR =  12  ... complete
+ number of frame elements............................ nE =  21  ... complete
+ number of load cases ............................... nL =   2 
+ load case 1 of 2:                                             
+  number of loaded nodes ............................ nF =   5
+  number of uniformly distributed loads ............. nU =   0
+  number of trapezoidally distributed loads ......... nW =   0
+  number of concentrated frame element point loads .. nP =   0
+  number of temperature changes ..................... nT =   0
+  number of prescribed displacements ................ nD =   1
+ load case 2 of 2:                                             
+  number of loaded nodes ............................ nF =   3
+  number of uniformly distributed loads ............. nU =   0
+  number of trapezoidally distributed loads ......... nW =   0
+  number of concentrated frame element point loads .. nP =   0
+  number of temperature changes ..................... nT =   3
+  number of prescribed displacements ................ nD =   2
+                                                      load data ... complete
+ number of dynamic modes ............................ nM =   0
+                                                      mass data ... complete
+ missing matrix condensation data 
+
+ Load Case 1 of 2 ...                                           
+ Linear Elastic Analysis ... Mechanical Loads
+  RMS relative equilibrium error  = 5.013e-016  < tol = 1.0e-009  ** converged ** 
+  RMS residual incremental displ. = 1.745e-017 .................      nice!      
+
+ Load Case 2 of 2 ...                                           
+ Linear Elastic Analysis ... Temperature Loads
+ Linear Elastic Analysis ... Mechanical Loads
+  RMS relative equilibrium error  = 1.471e-015  < tol = 1.0e-009  ** converged ** 
+  RMS residual incremental displ. = 2.418e-017 .................   reasonable!   
+

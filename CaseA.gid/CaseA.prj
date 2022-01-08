@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gid version="15.0">
+  <pre>
+    <layer_to_use name="Layer0"/>
+    <groups>
+      <group id="1" name="Frame Element Data Auto1" color="#ff00ffff" allowed_types="#22" allowed_element_types="#7fe"/>
+      <group id="2" name="Concentrated Load Auto1" color="#008000ff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="3" name="Concentrated Load Auto2" color="#ffff00ff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="4" name="Prescribed Nodal Displacements Auto1" color="#ffa500ff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="6" name="Concentrated Load Auto4" color="#cdc0b0ff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="7" name="Concentrated Load Auto5" color="#ffc0cbff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="8" name="Temperature Loads Auto1" color="#76eec6ff" allowed_types="#22" allowed_element_types="#7fe"/>
+      <group id="9" name="Temperature Loads Auto2" color="#8a2be2ff" allowed_types="#22" allowed_element_types="#7fe"/>
+      <group id="10" name="Temperature Loads Auto3" color="#8b2323ff" allowed_types="#22" allowed_element_types="#7fe"/>
+      <group id="11" name="Prescribed Nodal Displacements Auto2" color="#ee6a50ff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="12" name="Prescribed Nodal Displacements Auto3" color="#333333ff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="13" name="Restraints Auto1" color="#ff4500ff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="14" name="Restraints Auto2" color="#556b2fff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="15" name="Restraints Auto3" color="#b4eeb4ff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="16" name="Restraints Auto4" color="#fa8072ff" allowed_types="#11" allowed_element_types="#7fe"/>
+    </groups>
+    <entities_groups>
+      <entities_group name="nodes">
+        <vector name="entity_ids" length="12" type="integer">1:12</vector>
+        <vector name="entity_num_groups" length="12" type="ushort">2 2 3x3 2 1 3 1x4</vector>
+        <vector name="entity_groups" length="23" type="ushort">11 13 2 14 3 7 14 3 6 14 2 7 14 3 14 15 4 12 16 14x4</vector>
+      </entities_group>
+      <entities_group name="elements">
+        <vector name="entity_ids" length="21" type="integer">1:21</vector>
+        <vector name="entity_num_groups" length="21" type="ushort">1x9 2 1 1 2 1 2 1x6</vector>
+        <vector name="entity_groups" length="24" type="ushort">1x10 8 1x3 9 1 1 10 1x6</vector>
+      </entities_group>
+    </entities_groups>
+  </pre>
+</gid>

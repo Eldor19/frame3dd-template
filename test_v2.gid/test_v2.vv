@@ -1,5 +1,5 @@
-BeginZE D:/UPC_studies/Computational Mechanics Tools/Gid_homework/frame3dd-template/test_v2.gid/test_v2.vv
-   x -6.92751216888427734 6.92751216888427734
+BeginZE D:/UPC_studies/Computational_Mechanics_Tools/Gid_homework/frame3dd-template/test_v2.gid/test_v2.vv
+   x -3.51729822158813477 3.51729822158813477
    y 10 -10
    z -6.1385498046875 6.1385498046875
    e 2.04618334770202637
@@ -29,7 +29,7 @@ BeginZE D:/UPC_studies/Computational Mechanics Tools/Gid_homework/frame3dd-templ
    OGLStereo(EyeDistance) 0.075
    OGLStereo(LeftEyeDistance) 1 0 0 1
    OGLStereo(RightEyeDistance) 0 1 1 1
-EndZE D:/UPC_studies/Computational Mechanics Tools/Gid_homework/frame3dd-template/test_v2.gid/test_v2.vv
+EndZE D:/UPC_studies/Computational_Mechanics_Tools/Gid_homework/frame3dd-template/test_v2.gid/test_v2.vv
 
 BeginMirror
    Mirror 0 Angle 0.0 AngleFake -15.0 SizeFactor 2.0 HeightOffset 0.25 Color #d9e5f24d Backlight Off EdgeStyle No Type Scene DrawMode Mirror

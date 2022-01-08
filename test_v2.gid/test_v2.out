@@ -1,0 +1,340 @@
+________________________________________________________________________________
+Frame3DD version: 20140514+               http://frame3dd.sf.net/
+GPL Copyright (C) 1992-2015, Henri P. Gavin 
+Frame3DD is distributed in the hope that it will be useful but with no warranty.
+For details see the GNU Public Licence: http://www.fsf.org/copyleft/gpl.html
+________________________________________________________________________________
+
+Input Data file for Frame3DD - 3D structural frame analysis (N  µm  kg  s  K  rad MPa) 
+Sat Jan 08 16:28:53 2022
+________________________________________________________________________________
+In 2D problems the Y-axis is vertical.  In 3D problems the Z-axis is vertical.
+________________________________________________________________________________
+    2 NODES              1 FIXED NODES        1 FRAME ELEMENTS   1 LOAD CASES   
+________________________________________________________________________________
+N O D E   D A T A                                           R E S T R A I N T S
+  Node       X              Y              Z         radius  Fx Fy Fz Mx My Mz
+    1       0.000001       0.000002       0.000000    0.000   0  0  0  0  0  0
+    2      -0.000002      -0.000000       0.000000    0.000   1  1  1  1  1  1
+F R A M E   E L E M E N T   D A T A					(local)
+  Elmnt  J1    J2     Ax   Asy   Asz    Jxx     Iyy     Izz       E       G roll  density
+    1     2     1 999999995904.0 1999999991808.0 3000000053248.0 4000000055393711400000000.0 4999999781011763100000000.0 6000000083090567100000000.0 210000.0 79300.0   0 7.85e-015
+  Neglect shear deformations.
+  Neglect geometric stiffness.
+
+L O A D   C A S E   1   O F   1  ... 
+
+   Gravity X =  0.0    Gravity Y =  0.0    Gravity Z =  -9810000.000 
+   1 concentrated loads
+   0 uniformly distributed loads
+   0 trapezoidally distributed loads
+   0 concentrated point loads
+   0 temperature loads
+   0 prescribed displacements
+ N O D A L   L O A D S  +  E Q U I V A L E N T   N O D A L   L O A D S  (global)
+  Node        Fx          Fy          Fz          Mxx         Myy         Mzz
+     1       0.000     -10.000      -0.153       0.000      -0.000       0.000
+     2       0.000       0.000      -0.153      -0.000       0.000       0.000
+
+E L A S T I C   S T I F F N E S S   A N A L Y S I S   via  L D L'  decomposition
+
+  * The Stiffness Matrix is not positive-definite *
+    Check that all six rigid-body translations are restrained
+    If geometric stiffness is included, reduce the loads.
+
+L O A D   C A S E   1   O F   1  ... 
+
+N O D E   D I S P L A C E M E N T S  					(global)
+  Node    X-dsp       Y-dsp       Z-dsp       X-rot       Y-rot       Z-rot
+F R A M E   E L E M E N T   E N D   F O R C E S				(local)
+  Elmnt  Node       Nx          Vy         Vz        Txx        Myy        Mzz
+     1      2      0.0          0.0        0.153      0.0        0.0        0.0  
+     1      1      0.0          0.0        0.153      0.0        0.0        0.0  
+R E A C T I O N S							(global)
+  Node        Fx          Fy          Fz         Mxx         Myy         Mzz
+     2       0.000       0.000       0.000       0.000       0.000       0.000
+R M S    R E L A T I V E    E Q U I L I B R I U M    E R R O R: 1.000e+000
+
+________________________________________________________________________________
+Frame3DD version: 20140514+               http://frame3dd.sf.net/
+GPL Copyright (C) 1992-2015, Henri P. Gavin 
+Frame3DD is distributed in the hope that it will be useful but with no warranty.
+For details see the GNU Public Licence: http://www.fsf.org/copyleft/gpl.html
+________________________________________________________________________________
+
+Input Data file for Frame3DD - 3D structural frame analysis (N  µm  kg  s  K  rad MPa) 
+Sat Jan 08 16:31:07 2022
+________________________________________________________________________________
+In 2D problems the Y-axis is vertical.  In 3D problems the Z-axis is vertical.
+________________________________________________________________________________
+    2 NODES              1 FIXED NODES        1 FRAME ELEMENTS   1 LOAD CASES   
+________________________________________________________________________________
+N O D E   D A T A                                           R E S T R A I N T S
+  Node       X              Y              Z         radius  Fx Fy Fz Mx My Mz
+    1       0.000001       0.000002       0.000000    0.000   0  0  0  0  0  0
+    2      -0.000002      -0.000000       0.000000    0.000   1  1  1  1  1  1
+F R A M E   E L E M E N T   D A T A					(local)
+  Elmnt  J1    J2     Ax   Asy   Asz    Jxx     Iyy     Izz       E       G roll  density
+    1     2     1 999999995904.0 1999999991808.0 3000000053248.0 4000000055393711400000000.0 4999999781011763100000000.0 6000000083090567100000000.0 210000.0 79300.0   0 7.85e-015
+  Neglect shear deformations.
+  Neglect geometric stiffness.
+
+L O A D   C A S E   1   O F   1  ... 
+
+   Gravity X =  0.0    Gravity Y =  0.0    Gravity Z =  -9810000.000 
+   1 concentrated loads
+   0 uniformly distributed loads
+   0 trapezoidally distributed loads
+   0 concentrated point loads
+   0 temperature loads
+   0 prescribed displacements
+ N O D A L   L O A D S  +  E Q U I V A L E N T   N O D A L   L O A D S  (global)
+  Node        Fx          Fy          Fz          Mxx         Myy         Mzz
+     1       0.000     -10.000      -0.153       0.000      -0.000       0.000
+     2       0.000       0.000      -0.153      -0.000       0.000       0.000
+
+E L A S T I C   S T I F F N E S S   A N A L Y S I S   via  L D L'  decomposition
+
+  * The Stiffness Matrix is not positive-definite *
+    Check that all six rigid-body translations are restrained
+    If geometric stiffness is included, reduce the loads.
+
+L O A D   C A S E   1   O F   1  ... 
+
+N O D E   D I S P L A C E M E N T S  					(global)
+  Node    X-dsp       Y-dsp       Z-dsp       X-rot       Y-rot       Z-rot
+F R A M E   E L E M E N T   E N D   F O R C E S				(local)
+  Elmnt  Node       Nx          Vy         Vz        Txx        Myy        Mzz
+     1      2      0.0          0.0        0.153      0.0        0.0        0.0  
+     1      1      0.0          0.0        0.153      0.0        0.0        0.0  
+R E A C T I O N S							(global)
+  Node        Fx          Fy          Fz         Mxx         Myy         Mzz
+     2       0.000       0.000       0.000       0.000       0.000       0.000
+R M S    R E L A T I V E    E Q U I L I B R I U M    E R R O R: 1.000e+000
+
+________________________________________________________________________________
+Frame3DD version: 20140514+               http://frame3dd.sf.net/
+GPL Copyright (C) 1992-2015, Henri P. Gavin 
+Frame3DD is distributed in the hope that it will be useful but with no warranty.
+For details see the GNU Public Licence: http://www.fsf.org/copyleft/gpl.html
+________________________________________________________________________________
+
+Input Data file for Frame3DD - 3D structural frame analysis (N  µm  kg  s  K  rad MPa) 
+Sat Jan 08 16:37:22 2022
+________________________________________________________________________________
+In 2D problems the Y-axis is vertical.  In 3D problems the Z-axis is vertical.
+________________________________________________________________________________
+    2 NODES              1 FIXED NODES        1 FRAME ELEMENTS   1 LOAD CASES   
+________________________________________________________________________________
+N O D E   D A T A                                           R E S T R A I N T S
+  Node       X              Y              Z         radius  Fx Fy Fz Mx My Mz
+    1       0.000001       0.000002       0.000000    0.000   0  0  0  0  0  0
+    2      -0.000002      -0.000000       0.000000    0.000   1  1  1  1  1  1
+F R A M E   E L E M E N T   D A T A					(local)
+  Elmnt  J1    J2     Ax   Asy   Asz    Jxx     Iyy     Izz       E       G roll  density
+    1     2     1 999999995904.0 1999999991808.0 3000000053248.0 4000000055393711400000000.0 4999999781011763100000000.0 6000000083090567100000000.0 210000.0 79300.0   0 7.85e-015
+  Neglect shear deformations.
+  Neglect geometric stiffness.
+
+L O A D   C A S E   1   O F   1  ... 
+
+   Gravity X =  0.0    Gravity Y =  0.0    Gravity Z =  -9810000.000 
+   1 concentrated loads
+   0 uniformly distributed loads
+   0 trapezoidally distributed loads
+   0 concentrated point loads
+   0 temperature loads
+   0 prescribed displacements
+ N O D A L   L O A D S  +  E Q U I V A L E N T   N O D A L   L O A D S  (global)
+  Node        Fx          Fy          Fz          Mxx         Myy         Mzz
+     1       0.000     -10.000      -0.153       0.000      -0.000       0.000
+     2       0.000       0.000      -0.153      -0.000       0.000       0.000
+
+E L A S T I C   S T I F F N E S S   A N A L Y S I S   via  L D L'  decomposition
+
+  * The Stiffness Matrix is not positive-definite *
+    Check that all six rigid-body translations are restrained
+    If geometric stiffness is included, reduce the loads.
+
+L O A D   C A S E   1   O F   1  ... 
+
+N O D E   D I S P L A C E M E N T S  					(global)
+  Node    X-dsp       Y-dsp       Z-dsp       X-rot       Y-rot       Z-rot
+F R A M E   E L E M E N T   E N D   F O R C E S				(local)
+  Elmnt  Node       Nx          Vy         Vz        Txx        Myy        Mzz
+     1      2      0.0          0.0        0.153      0.0        0.0        0.0  
+     1      1      0.0          0.0        0.153      0.0        0.0        0.0  
+R E A C T I O N S							(global)
+  Node        Fx          Fy          Fz         Mxx         Myy         Mzz
+     2       0.000       0.000       0.000       0.000       0.000       0.000
+R M S    R E L A T I V E    E Q U I L I B R I U M    E R R O R: 1.000e+000
+
+________________________________________________________________________________
+Frame3DD version: 20140514+               http://frame3dd.sf.net/
+GPL Copyright (C) 1992-2015, Henri P. Gavin 
+Frame3DD is distributed in the hope that it will be useful but with no warranty.
+For details see the GNU Public Licence: http://www.fsf.org/copyleft/gpl.html
+________________________________________________________________________________
+
+Input Data file for Frame3DD - 3D structural frame analysis (N  µm  kg  s  K  rad MPa) 
+Sat Jan 08 16:55:47 2022
+________________________________________________________________________________
+In 2D problems the Y-axis is vertical.  In 3D problems the Z-axis is vertical.
+________________________________________________________________________________
+    2 NODES              1 FIXED NODES        1 FRAME ELEMENTS   1 LOAD CASES   
+________________________________________________________________________________
+N O D E   D A T A                                           R E S T R A I N T S
+  Node       X              Y              Z         radius  Fx Fy Fz Mx My Mz
+    1       0.000001       0.000002       0.000000    0.000   0  0  0  0  0  0
+    2      -0.000002      -0.000000       0.000000    0.000   1  1  1  1  1  1
+F R A M E   E L E M E N T   D A T A					(local)
+  Elmnt  J1    J2     Ax   Asy   Asz    Jxx     Iyy     Izz       E       G roll  density
+    1     2     1 999999995904.0 1999999991808.0 3000000053248.0 4000000055393711400000000.0 4999999781011763100000000.0 6000000083090567100000000.0 210000.0 79300.0   0 7.85e-015
+  Neglect shear deformations.
+  Neglect geometric stiffness.
+
+L O A D   C A S E   1   O F   1  ... 
+
+   Gravity X =  0.0    Gravity Y =  0.0    Gravity Z =  -9810000.000 
+   1 concentrated loads
+   0 uniformly distributed loads
+   0 trapezoidally distributed loads
+   0 concentrated point loads
+   0 temperature loads
+   0 prescribed displacements
+ N O D A L   L O A D S  +  E Q U I V A L E N T   N O D A L   L O A D S  (global)
+  Node        Fx          Fy          Fz          Mxx         Myy         Mzz
+     1       0.000     -10.000      -0.153       0.000      -0.000       0.000
+     2       0.000       0.000      -0.153      -0.000       0.000       0.000
+
+E L A S T I C   S T I F F N E S S   A N A L Y S I S   via  L D L'  decomposition
+
+  * The Stiffness Matrix is not positive-definite *
+    Check that all six rigid-body translations are restrained
+    If geometric stiffness is included, reduce the loads.
+
+L O A D   C A S E   1   O F   1  ... 
+
+N O D E   D I S P L A C E M E N T S  					(global)
+  Node    X-dsp       Y-dsp       Z-dsp       X-rot       Y-rot       Z-rot
+F R A M E   E L E M E N T   E N D   F O R C E S				(local)
+  Elmnt  Node       Nx          Vy         Vz        Txx        Myy        Mzz
+     1      2      0.0          0.0        0.153      0.0        0.0        0.0  
+     1      1      0.0          0.0        0.153      0.0        0.0        0.0  
+R E A C T I O N S							(global)
+  Node        Fx          Fy          Fz         Mxx         Myy         Mzz
+     2       0.000       0.000       0.000       0.000       0.000       0.000
+R M S    R E L A T I V E    E Q U I L I B R I U M    E R R O R: 1.000e+000
+
+________________________________________________________________________________
+Frame3DD version: 20140514+               http://frame3dd.sf.net/
+GPL Copyright (C) 1992-2015, Henri P. Gavin 
+Frame3DD is distributed in the hope that it will be useful but with no warranty.
+For details see the GNU Public Licence: http://www.fsf.org/copyleft/gpl.html
+________________________________________________________________________________
+
+Input Data file for Frame3DD - 3D structural frame analysis (N  µm  kg  s  K  rad MPa) 
+Sat Jan 08 16:56:36 2022
+________________________________________________________________________________
+In 2D problems the Y-axis is vertical.  In 3D problems the Z-axis is vertical.
+________________________________________________________________________________
+    2 NODES              1 FIXED NODES        1 FRAME ELEMENTS   1 LOAD CASES   
+________________________________________________________________________________
+N O D E   D A T A                                           R E S T R A I N T S
+  Node       X              Y              Z         radius  Fx Fy Fz Mx My Mz
+    1       0.000001       0.000002       0.000000    0.000   0  0  0  0  0  0
+    2      -0.000002      -0.000000       0.000000    0.000   1  1  1  1  1  1
+F R A M E   E L E M E N T   D A T A					(local)
+  Elmnt  J1    J2     Ax   Asy   Asz    Jxx     Iyy     Izz       E       G roll  density
+    1     2     1 999999995904.0 1999999991808.0 3000000053248.0 4000000055393711400000000.0 4999999781011763100000000.0 6000000083090567100000000.0 210000.0 79300.0   0 7.85e-015
+  Neglect shear deformations.
+  Neglect geometric stiffness.
+
+L O A D   C A S E   1   O F   1  ... 
+
+   Gravity X =  0.0    Gravity Y =  0.0    Gravity Z =  -9810000.000 
+   1 concentrated loads
+   0 uniformly distributed loads
+   0 trapezoidally distributed loads
+   0 concentrated point loads
+   0 temperature loads
+   0 prescribed displacements
+ N O D A L   L O A D S  +  E Q U I V A L E N T   N O D A L   L O A D S  (global)
+  Node        Fx          Fy          Fz          Mxx         Myy         Mzz
+     1       0.000     -10.000      -0.153       0.000      -0.000       0.000
+     2       0.000       0.000      -0.153      -0.000       0.000       0.000
+
+E L A S T I C   S T I F F N E S S   A N A L Y S I S   via  L D L'  decomposition
+
+  * The Stiffness Matrix is not positive-definite *
+    Check that all six rigid-body translations are restrained
+    If geometric stiffness is included, reduce the loads.
+
+L O A D   C A S E   1   O F   1  ... 
+
+N O D E   D I S P L A C E M E N T S  					(global)
+  Node    X-dsp       Y-dsp       Z-dsp       X-rot       Y-rot       Z-rot
+F R A M E   E L E M E N T   E N D   F O R C E S				(local)
+  Elmnt  Node       Nx          Vy         Vz        Txx        Myy        Mzz
+     1      2      0.0          0.0        0.153      0.0        0.0        0.0  
+     1      1      0.0          0.0        0.153      0.0        0.0        0.0  
+R E A C T I O N S							(global)
+  Node        Fx          Fy          Fz         Mxx         Myy         Mzz
+     2       0.000       0.000       0.000       0.000       0.000       0.000
+R M S    R E L A T I V E    E Q U I L I B R I U M    E R R O R: 1.000e+000
+
+________________________________________________________________________________
+Frame3DD version: 20140514+               http://frame3dd.sf.net/
+GPL Copyright (C) 1992-2015, Henri P. Gavin 
+Frame3DD is distributed in the hope that it will be useful but with no warranty.
+For details see the GNU Public Licence: http://www.fsf.org/copyleft/gpl.html
+________________________________________________________________________________
+
+Input Data file for Frame3DD - 3D structural frame analysis (N  µm  kg  s  K  rad MPa) 
+Sat Jan 08 16:57:26 2022
+________________________________________________________________________________
+In 2D problems the Y-axis is vertical.  In 3D problems the Z-axis is vertical.
+________________________________________________________________________________
+    2 NODES              1 FIXED NODES        1 FRAME ELEMENTS   1 LOAD CASES   
+________________________________________________________________________________
+N O D E   D A T A                                           R E S T R A I N T S
+  Node       X              Y              Z         radius  Fx Fy Fz Mx My Mz
+    1       0.000001       0.000002       0.000000    0.000   0  0  0  0  0  0
+    2      -0.000002      -0.000000       0.000000    0.000   1  1  1  1  1  1
+F R A M E   E L E M E N T   D A T A					(local)
+  Elmnt  J1    J2     Ax   Asy   Asz    Jxx     Iyy     Izz       E       G roll  density
+    1     2     1 100000000.0 100000000.0 100000000.0 40000001090256896.0 49999999215337472.0 60000001635385344.0 210000.0 79300.0   0 7.85e-015
+  Neglect shear deformations.
+  Neglect geometric stiffness.
+
+L O A D   C A S E   1   O F   1  ... 
+
+   Gravity X =  0.0    Gravity Y =  0.0    Gravity Z =  -9810000.000 
+   1 concentrated loads
+   0 uniformly distributed loads
+   0 trapezoidally distributed loads
+   0 concentrated point loads
+   0 temperature loads
+   0 prescribed displacements
+ N O D A L   L O A D S  +  E Q U I V A L E N T   N O D A L   L O A D S  (global)
+  Node        Fx          Fy          Fz          Mxx         Myy         Mzz
+     1       0.000     -10.000      -0.000       0.000      -0.000       0.000
+     2       0.000       0.000      -0.000      -0.000       0.000       0.000
+
+E L A S T I C   S T I F F N E S S   A N A L Y S I S   via  L D L'  decomposition
+
+
+L O A D   C A S E   1   O F   1  ... 
+
+N O D E   D I S P L A C E M E N T S  					(global)
+  Node    X-dsp       Y-dsp       Z-dsp       X-rot       Y-rot       Z-rot
+     1    0.0         0.0         0.0         0.0         0.0         0.0     
+F R A M E   E L E M E N T   E N D   F O R C E S				(local)
+  Elmnt  Node       Nx          Vy         Vz        Txx        Myy        Mzz
+     1      2      0.002      -8.486      0.0        0.0        0.0        0.0  
+     1      1     -0.002       8.486      0.0        0.0        0.0        0.0  
+R E A C T I O N S							(global)
+  Node        Fx          Fy          Fz         Mxx         Myy         Mzz
+     2       3.083      -2.762       0.000       0.000      -0.000       0.000
+R M S    R E L A T I V E    E Q U I L I B R I U M    E R R O R: 1.608e-025
+

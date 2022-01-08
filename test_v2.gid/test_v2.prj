@@ -10,6 +10,9 @@
       <group id="5" name="Temperature Loads Auto1" color="#ffc0cbff" allowed_types="#22" allowed_element_types="#7fe"/>
       <group id="6" name="Restraints Auto1" color="#cdc0b0ff" allowed_types="#11" allowed_element_types="#7fe"/>
       <group id="7" name="Frame Element Data Auto1" color="#76eec6ff" allowed_types="#22" allowed_element_types="#7fe"/>
+      <group id="8" name="Restraints Auto2" color="#ff00ffff" allowed_types="#11" allowed_element_types="#7fe"/>
+      <group id="9" name="Frame Element Data Auto2" color="#008000ff" allowed_types="#22" allowed_element_types="#7fe"/>
+      <group id="10" name="Concentrated Load Auto2" color="#ffff00ff" allowed_types="#11" allowed_element_types="#7fe"/>
     </groups>
     <entities_groups>
       <entities_group name="points">
@@ -18,14 +21,14 @@
         <vector name="entity_groups" length="1" type="ushort">1</vector>
       </entities_group>
       <entities_group name="nodes">
-        <vector name="entity_ids" length="1" type="integer">2</vector>
-        <vector name="entity_num_groups" length="1" type="ushort">2</vector>
-        <vector name="entity_groups" length="2" type="ushort">1 6</vector>
+        <vector name="entity_ids" length="2" type="integer">1 2</vector>
+        <vector name="entity_num_groups" length="2" type="ushort">1 3</vector>
+        <vector name="entity_groups" length="4" type="ushort">10 1 6 8</vector>
       </entities_group>
       <entities_group name="elements">
         <vector name="entity_ids" length="1" type="integer">1</vector>
-        <vector name="entity_num_groups" length="1" type="ushort">5</vector>
-        <vector name="entity_groups" length="5" type="ushort">2 3 4 5 7</vector>
+        <vector name="entity_num_groups" length="1" type="ushort">6</vector>
+        <vector name="entity_groups" length="6" type="ushort">2 3 4 5 7 9</vector>
       </entities_group>
     </entities_groups>
   </pre>
