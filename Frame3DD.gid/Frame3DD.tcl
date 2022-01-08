@@ -106,7 +106,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
     # braucht man das /blockdata hinten dran?
     set xml_nodes [$document selectNodes $xpath]
     set num_cases 0 
-    foreach i [$xml_nodes childNodes] { incr num_cases }
+    foreach load_case [$xml_nodes childNodes] { incr num_cases }
     customlib::WriteString "$num_cases # number of static load cases"
     set i_case 0
 
