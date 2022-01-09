@@ -1,7 +1,7 @@
 # FRAME3DD ANALYSIS RESULTS  http://frame3dd.sf.net/ VERSION 20140514+ 
-# Input Data file for Frame3DD - 3D structural frame analysis (N  mm  t  s  K  ° MPa) 
+# Input Data file for Frame3DD - 3D structural frame analysis (N  mm  t  s  °C  ° MPa) 
 # CaseB.if03
-# Sat Jan 08 23:13:57 2022
+# Sun Jan 09 14:12:07 2022
 # L O A D  C A S E   3  of   3 
 # F R A M E   E L E M E N T   I N T E R N A L   F O R C E S (local)
 # F R A M E   E L E M E N T   T R A N S V E R S E   D I S P L A C E M E N T S (local)

@@ -9,7 +9,7 @@ namespace eval Frame3DD {
 proc Frame3DD::WriteCalculationFile { filename } {
     customlib::InitWriteFile $filename
     
-    # Place your writing script here
+    # Basic file info and setting base units
     customlib::WriteString "Input Data file for Frame3DD - 3D structural frame analysis\
     ([gid_groups_conds::give_active_unit F], [gid_groups_conds::give_active_unit L],\
     [gid_groups_conds::give_active_unit M], [gid_groups_conds::give_active_unit T],\
@@ -109,7 +109,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
 
     ###################################### Options ###############################################
     #set document [$::gid_groups_conds::doc documentElement]
-    #set xpath "/frame3dd_data/container\[@n = 'Options' \]/value\[@n = 'incl_shear_def' \]"
+    #set xpath "/frame3dd_data/container\[@n = 'Options' \]/value\[@n = 'incl_shear_def' \]"the 
     #set xml_node [$document selectNodes $xpath]
     #set shear_deformation [get_domnode_attribute $xml_node v]
 

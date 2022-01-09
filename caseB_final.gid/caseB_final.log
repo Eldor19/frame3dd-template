@@ -10,5 +10,23 @@
  ** Input Data file for Frame3DD - 3D structural frame analysis (N  mm  t  s  °C  ° MPa)  ** 
 
  number of nodes .................................... nN =   5  ... complete
- number of nodes with reactions ..................... nR =   0  ... complete
- number of frame elements............................ nE =   0 
+ number of nodes with reactions ..................... nR =   3  ... complete
+ number of frame elements............................ nE =   4  ... complete
+ number of load cases ............................... nL =   1 
+ load case 1 of 1:                                             
+  number of loaded nodes ............................ nF =   1
+  number of uniformly distributed loads ............. nU =   0
+  number of trapezoidally distributed loads ......... nW =   0
+  number of concentrated frame element point loads .. nP =   0
+  number of temperature changes ..................... nT =   0
+  number of prescribed displacements ................ nD =   0
+                                                      load data ... complete
+ number of dynamic modes ............................ nM =   0
+                                                      mass data ... complete
+ missing matrix condensation data 
+
+ Load Case 1 of 1 ...                                           
+ Linear Elastic Analysis ... Mechanical Loads
+  RMS relative equilibrium error  = 2.240e-015  < tol = 1.0e-009  ** converged ** 
+  RMS residual incremental displ. = 1.592e-021 .................   not shabby!   
+
