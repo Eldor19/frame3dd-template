@@ -9,13 +9,13 @@ namespace eval Frame3DD {
 proc Frame3DD::WriteCalculationFile { filename } {
     customlib::InitWriteFile $filename
     
-    # Basic file info and setting base units
+    ## Basic file info and setting base units
     customlib::WriteString "Input Data file for Frame3DD - 3D structural frame analysis\
     ([gid_groups_conds::give_active_unit F], [gid_groups_conds::give_active_unit L],\
     [gid_groups_conds::give_active_unit M], [gid_groups_conds::give_active_unit T],\
     [gid_groups_conds::give_active_unit Temp], [gid_groups_conds::give_active_unit Angle] [gid_groups_conds::give_active_unit P])" 
 
-    #################### COORDINATES ############################ 
+    ## Coordinates
     customlib::WriteString ""
     customlib::WriteString "# node data"
     customlib::WriteString "[GiD_Info Mesh NumNodes] # number of nodes"
@@ -24,9 +24,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
     set format "%5d %14.5e %14.5e %14.5e\t0.0\n"
     GiD_WriteCalculationFile coordinates  $format
 
-    #customlib::WriteCoordinates "%5d %14.5e %14.5e %14.5e\t0.0\n"
-
-    #################### Restraints #############################
+    ## Restraints 
     customlib::WriteString ""
     customlib::WriteString "# reaction data"
     set restraints_list [list "restraints"]
@@ -39,25 +37,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
     customlib::WriteNodes $restraints_list $restraints_formats 
     customlib::WriteString ""
 
-    ################### Frame Data ############################## 
-    
-    # customlib::WriteString ""
-    # customlib::WriteString "# frame element data"
-    # set frames_list [list "frame_data"]  
-    # ###################################################  change later to frame_data (changed .spd!)
-    # customlib::InitMaterials $frames_list 
-    # set frame_format [list {"%5d" "element" "id"} {"%5d" "element" "connectivities"}  {"%13.5e" "property" "Ax"
-    # } {"%13.5e" "property" "Asy"} {"%13.5e" "property" "Asz"} {"%13.5e" "property" "Jxx"} {"%13.5e" "property" "Iyy"
-    # } {"%13.5e" "property" "Izz"} {"%13.5e" "material" "E"} {"%13.5e" "material" "G"} {"%13.5e" "property" "roll"
-    # } {"%13.5e" "material" "Density"}]
-    # #set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats]
-    # customlib::WriteString "[GiD_Info Mesh NumElements] # number of frame elements"
-    # customlib::WriteString "#   e\t n1    n2   Ax\t\t Asy\t      Asz\t   Jxx\t   \tIyy\t     Izz\t    E\t        G\t     roll\t    density"
-    # customlib::WriteString "#   .\t .     .    [gid_groups_conds::give_active_unit L]^2\t [gid_groups_conds::give_active_unit L]^2\t       [gid_groups_conds::give_active_unit L]^2\
-    #     \t    [gid_groups_conds::give_active_unit L]^4\t  [    gid_groups_conds::give_active_unit L]^4\t      [gid_groups_conds::give_active_unit L]^4\t    \
-    #     [gid_groups_conds::give_active_unit P]\t\t [gid_groups_conds::give_active_unit P]\t     [gid_groups_conds::give_active_unit Angle]\t   [gid_groups_conds::give_active_unit M/L^3]"
-    # customlib::WriteString ""
-    # customlib::WriteConnectivities $frames_list $frame_format 
+    ## Frame data
     set document [$::gid_groups_conds::doc documentElement]
     set xpath "/Frame3DD_default/condition\[@n='frame_data'\]/group"
     set groups [$document selectNodes $xpath]
@@ -73,7 +53,7 @@ proc Frame3DD::WriteCalculationFile { filename } {
         set Izz_node [$group selectNodes "./value\[@n = 'Izz'\]"]
         set roll_node [$group selectNodes "./value\[@n = 'roll'\]"]
 
-        # material
+        # material (for each frame data group)
         set mat_node [$group selectNodes "./value\[@n = 'material'\]"]
         set mat_name [get_domnode_attribute $mat_node v]
         set xpath_density  "/Frame3DD_default/container\[@n='materials'\]/blockdata\[@name='$mat_name'\]/value\[@n='Density'\]"
@@ -83,7 +63,6 @@ proc Frame3DD::WriteCalculationFile { filename } {
         set density_node [$document selectNodes $xpath_density]
         set E_node [$document selectNodes $xpath_E]
         set G_node [$document selectNodes $xpath_G]
-
 
         set format "%5d %5d %5d [gid_groups_conds::convert_value_to_active $Ax_node] [gid_groups_conds::convert_value_to_active $Asy_node] \
         [gid_groups_conds::convert_value_to_active $Asz_node] [gid_groups_conds::convert_value_to_active $Jxx_node] \
@@ -102,17 +81,8 @@ proc Frame3DD::WriteCalculationFile { filename } {
     customlib::WriteString ""
     GiD_WriteCalculationFile connectivities -elemtype Linear  $formats_dict
     customlib::WriteString ""
-        
-
-
-
-
-    ###################################### Options ###############################################
-    #set document [$::gid_groups_conds::doc documentElement]
-    #set xpath "/frame3dd_data/container\[@n = 'Options' \]/value\[@n = 'incl_shear_def' \]"the 
-    #set xml_node [$document selectNodes $xpath]
-    #set shear_deformation [get_domnode_attribute $xml_node v]
-
+    
+    ## Options
     set document [$::gid_groups_conds::doc documentElement]
     set xpath "/Frame3DD_default/container\[@n = 'Options' \]/value\[@n = 'incl_shear_def' \]"
     set xml_node [$document selectNodes $xpath]
@@ -138,7 +108,6 @@ proc Frame3DD::WriteCalculationFile { filename } {
     set xml_node [$document selectNodes $xpath]
     set x_incr [get_domnode_attribute $xml_node v]
 
-
     customlib::WriteString ""
     customlib::WriteString "# Options"
     customlib::WriteString "$shear_deformation \t # 1=Do, 0=Don't include shear deformation effects"
@@ -148,9 +117,8 @@ proc Frame3DD::WriteCalculationFile { filename } {
     customlib::WriteString "$x_incr \t # x-axis increment for internal forces. If dx is -1 then internal force calculations are skipped."
     customlib::WriteString ""
 
-    ######################Load Cases###############
+    ## Load Cases
     set xpath "/Frame3DD_default/container\[@n = 'load_cases' \]"  
-    # braucht man das /blockdata hinten dran?
     set xml_nodes [$document selectNodes $xpath]
     set num_cases 0 
     foreach load [$xml_nodes childNodes] { incr num_cases }
@@ -160,9 +128,6 @@ proc Frame3DD::WriteCalculationFile { filename } {
     # mainloop
     set xpath "/Frame3DD_default/container\[@n = 'load_cases' \]/blockdata"  
     set xml_nodes [$document selectNodes $xpath]
-    #set xpath "/Frame3DD_default/container\[@n = 'load_cases' \]"  
-    # for inside the loop
-
     foreach load_case $xml_nodes {
         incr i_case
         customlib::WriteString "# Begin load case $i_case of $num_cases"
@@ -171,18 +136,11 @@ proc Frame3DD::WriteCalculationFile { filename } {
         # Gravity
         set xpath "./container\[@n = 'gravity' \]/value\[@n = 'g_x' \]"
         set xml_node_x [$load_case selectNodes $xpath]
-        # hier ganz wichtig, dass das erste Argument $loadcase ist!!!!!
-        set g_x [get_domnode_attribute $xml_node_x v]
-
         set xpath "./container\[@n = 'gravity' \]/value\[@n = 'g_y' \]"
         set xml_node_y [$load_case selectNodes $xpath]
-        # hier ganz wichtig, dass das erste Argument $loadcase ist!!!!!
-        set g_y [get_domnode_attribute $xml_node_y v]
-
         set xpath "./container\[@n = 'gravity' \]/value\[@n = 'g_z' \]"
         set xml_node_z [$load_case selectNodes $xpath]
-        # hier ganz wichtig, dass das erste Argument $loadcase ist!!!!!
-        set g_z [get_domnode_attribute $xml_node_z v]
+       
         customlib::WriteString "# gravitational acceleration for self-weight loading (global)"
         customlib::WriteString "# g_x\t g_y\t g_z"
         customlib::WriteString "# [gid_groups_conds::give_active_unit L/T^2] [gid_groups_conds::give_active_unit L/T^2] [gid_groups_conds::give_active_unit L/T^2]"
@@ -197,17 +155,12 @@ proc Frame3DD::WriteCalculationFile { filename } {
         foreach group $groups {
         set group_name [get_domnode_attribute $group n]
         set fx_node [$group selectNodes "./value\[@n = 'fx'\]"]
-        set fx_value [get_domnode_attribute $fx_node v]
         set fy_node [$group selectNodes "./value\[@n = 'fy'\]"]
-        set fy_value [get_domnode_attribute $fy_node v]
         set fz_node [$group selectNodes "./value\[@n = 'fz'\]"]
-        set fz_value [get_domnode_attribute $fz_node v]
         set mx_node [$group selectNodes "./value\[@n = 'mx'\]"]
-        set mx_value [get_domnode_attribute $fx_node v]
         set my_node [$group selectNodes "./value\[@n = 'my'\]"]
-        set my_value [get_domnode_attribute $my_node v]
         set mz_node [$group selectNodes "./value\[@n = 'mz'\]"]
-        set mz_value [get_domnode_attribute $mz_node v]
+
         set format "%5d [gid_groups_conds::convert_value_to_active $fx_node] [gid_groups_conds::convert_value_to_active $fy_node] \
             [gid_groups_conds::convert_value_to_active $fz_node] [gid_groups_conds::convert_value_to_active $mx_node] \
             [gid_groups_conds::convert_value_to_active $my_node] [gid_groups_conds::convert_value_to_active $mz_node]\n"
@@ -223,7 +176,6 @@ proc Frame3DD::WriteCalculationFile { filename } {
         customlib::WriteString ""
         GiD_WriteCalculationFile nodes  $formats_dict
         customlib::WriteString ""
-
         }
 
         # uniform load
@@ -234,11 +186,8 @@ proc Frame3DD::WriteCalculationFile { filename } {
         foreach group $groups {
             set group_name [get_domnode_attribute $group n]
             set fx_node [$group selectNodes "./value\[@n = 'fx'\]"]
-            set fx_value [get_domnode_attribute $fx_node v]
             set fy_node [$group selectNodes "./value\[@n = 'fy'\]"]
-            set fy_value [get_domnode_attribute $fy_node v]
             set fz_node [$group selectNodes "./value\[@n = 'fz'\]"]
-            set fz_value [get_domnode_attribute $fz_node v]
 
             set format "%5d [gid_groups_conds::convert_value_to_active $fx_node] [gid_groups_conds::convert_value_to_active $fy_node] \
             [gid_groups_conds::convert_value_to_active $fz_node] \n"
@@ -264,31 +213,19 @@ proc Frame3DD::WriteCalculationFile { filename } {
         foreach group $groups {
             set group_name [get_domnode_attribute $group n]
             set p1_x_node [$group selectNodes "./value\[@n = 'p1_x'\]"]
-            set p1_x_value [get_domnode_attribute $p1_x_node v]
             set p2_x_node [$group selectNodes "./value\[@n = 'p2_x'\]"]
-            set p2_x_value [get_domnode_attribute $p2_x_node v]
             set p1_fx_node [$group selectNodes "./value\[@n = 'p1_fx'\]"]
-            set p1_fx_value [get_domnode_attribute $p1_fx_node v]
             set p2_fx_node [$group selectNodes "./value\[@n = 'p2_fx'\]"]
-            set p2_fx_value [get_domnode_attribute $p2_fx_node v]
 
             set p1_y_node [$group selectNodes "./value\[@n = 'p1_y'\]"]
-            set p1_y_value [get_domnode_attribute $p1_y_node v]
             set p2_y_node [$group selectNodes "./value\[@n = 'p2_y'\]"]
-            set p2_y_value [get_domnode_attribute $p2_y_node v]
             set p1_fy_node [$group selectNodes "./value\[@n = 'p1_fy'\]"]
-            set p1_fy_value [get_domnode_attribute $p1_fy_node v]
             set p2_fy_node [$group selectNodes "./value\[@n = 'p2_fy'\]"]
-            set p2_fy_value [get_domnode_attribute $p2_fy_node v]
 
             set p1_z_node [$group selectNodes "./value\[@n = 'p1_z'\]"]
-            set p1_z_value [get_domnode_attribute $p1_z_node v]
             set p2_z_node [$group selectNodes "./value\[@n = 'p2_z'\]"]
-            set p2_z_value [get_domnode_attribute $p2_z_node v]
             set p1_fz_node [$group selectNodes "./value\[@n = 'p1_fz'\]"]
-            set p1_fz_value [get_domnode_attribute $p1_fz_node v]
             set p2_fz_node [$group selectNodes "./value\[@n = 'p2_fz'\]"]
-            set p2_fz_value [get_domnode_attribute $p2_fz_node v]
             
             set format "%5d   [gid_groups_conds::convert_value_to_active $p1_x_node] [gid_groups_conds::convert_value_to_active $p2_x_node] \
             [gid_groups_conds::convert_value_to_active $p1_fx_node] [gid_groups_conds::convert_value_to_active $p2_fx_node] \t# location and loading - local x-axis\n\
@@ -300,7 +237,6 @@ proc Frame3DD::WriteCalculationFile { filename } {
         }
 
         set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats_dict]
-        #customlib::WriteString ""
         customlib::WriteString "$number_of_elements # number of trapezoidal loads"
         
         if {$number_of_elements > 0} {
@@ -319,13 +255,9 @@ proc Frame3DD::WriteCalculationFile { filename } {
         foreach group $groups {
             set group_name [get_domnode_attribute $group n]
             set fx_node [$group selectNodes "./value\[@n = 'fx'\]"]
-            set fx_value [get_domnode_attribute $fx_node v]
             set fy_node [$group selectNodes "./value\[@n = 'fy'\]"]
-            set fy_value [get_domnode_attribute $fy_node v]
             set fz_node [$group selectNodes "./value\[@n = 'fz'\]"]
-            set fz_value [get_domnode_attribute $fz_node v]
             set x_node [$group selectNodes "./value\[@n = 'x'\]"]
-            set x_value [get_domnode_attribute $x_node v]
             
             set format "%5d    [gid_groups_conds::convert_value_to_active $fx_node]  [gid_groups_conds::convert_value_to_active $fy_node] \
             [gid_groups_conds::convert_value_to_active $fz_node] [gid_groups_conds::convert_value_to_active $x_node] \n"
@@ -333,7 +265,6 @@ proc Frame3DD::WriteCalculationFile { filename } {
         }
 
         set number_of_elements [GiD_WriteCalculationFile elements -count -elemtype Linear $formats_dict]
-
         customlib::WriteString "$number_of_elements # number of internal concentrated loads"
         
         if {$number_of_elements > 0} {
@@ -352,19 +283,12 @@ proc Frame3DD::WriteCalculationFile { filename } {
         foreach group $groups {
             set group_name [get_domnode_attribute $group n]
             set alpha_node [$group selectNodes "./value\[@n = 'alpha'\]"]
-            set alpha_value [get_domnode_attribute $alpha_node v]
             set hy_node [$group selectNodes "./value\[@n = 'hy'\]"]
-            set hy_value [get_domnode_attribute $hy_node v]
             set hz_node [$group selectNodes "./value\[@n = 'hz'\]"]
-            set hz_value [get_domnode_attribute $hz_node v]
             set typ_node [$group selectNodes "./value\[@n = 'Ty+'\]"]
-            set typ_value [get_domnode_attribute $typ_node v]
             set tym_node [$group selectNodes "./value\[@n = 'Ty-'\]"]
-            set tym_value [get_domnode_attribute $tym_node v]
             set tzp_node [$group selectNodes "./value\[@n = 'Tz+'\]"]
-            set tzp_value [get_domnode_attribute $tzp_node v]
             set tzm_node [$group selectNodes "./value\[@n = 'Tz-'\]"]
-            set tzm_value [get_domnode_attribute $tzm_node v]
 
             set format "%5d    [gid_groups_conds::convert_value_to_active $alpha_node] [gid_groups_conds::convert_value_to_active $hy_node] \
             [gid_groups_conds::convert_value_to_active $hz_node] [gid_groups_conds::convert_value_to_active $typ_node] \
@@ -393,17 +317,11 @@ proc Frame3DD::WriteCalculationFile { filename } {
         foreach group $groups {
         set group_name [get_domnode_attribute $group n]
         set ux_node [$group selectNodes "./value\[@n = 'ux'\]"]
-        set ux_value [get_domnode_attribute $ux_node v]
         set uy_node [$group selectNodes "./value\[@n = 'uy'\]"]
-        set uy_value [get_domnode_attribute $uy_node v]
         set uz_node [$group selectNodes "./value\[@n = 'uz'\]"]
-        set uz_value [get_domnode_attribute $uz_node v]
         set rot_x_node [$group selectNodes "./value\[@n = 'rot_x'\]"]
-        set rot_x_value [get_domnode_attribute $rot_x_node v]
         set rot_y_node [$group selectNodes "./value\[@n = 'rot_y'\]"]
-        set rot_y_value [get_domnode_attribute $rot_y_node v]
         set rot_z_node [$group selectNodes "./value\[@n = 'rot_z'\]"]
-        set rot_z_value [get_domnode_attribute $rot_z_node v]
         set format "%5d [gid_groups_conds::convert_value_to_active $ux_node] [gid_groups_conds::convert_value_to_active $uy_node] \
         [gid_groups_conds::convert_value_to_active $uz_node] [gid_groups_conds::convert_value_to_active $rot_x_node] \
         [gid_groups_conds::convert_value_to_active $rot_y_node] [gid_groups_conds::convert_value_to_active $rot_z_node]\n"
@@ -424,9 +342,6 @@ proc Frame3DD::WriteCalculationFile { filename } {
         customlib::WriteString "# End load case $i_case of $num_cases"
         customlib::WriteString ""
     }
-
-
-
 
     customlib::WriteString "0 # number of dynamic modes"
 

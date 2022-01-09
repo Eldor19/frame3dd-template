@@ -35,11 +35,11 @@
  Load Case 1 of 2 ...                                           
  Linear Elastic Analysis ... Mechanical Loads
   RMS relative equilibrium error  = 3.191e-015  < tol = 1.0e-009  ** converged ** 
-  RMS residual incremental displ. = 2.798e-015 ................. passable. 
+  RMS residual incremental displ. = 2.798e-015 ................. fine. 
 
  Load Case 2 of 2 ...                                           
  Linear Elastic Analysis ... Temperature Loads
  Linear Elastic Analysis ... Mechanical Loads
   RMS relative equilibrium error  = 1.198e-015  < tol = 1.0e-009  ** converged ** 
-  RMS residual incremental displ. = 2.935e-016 ................. all right. 
+  RMS residual incremental displ. = 2.935e-016 ................. not bad. 
 
