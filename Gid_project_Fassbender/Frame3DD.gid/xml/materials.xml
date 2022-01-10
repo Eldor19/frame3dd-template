@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!-- -*- coding: utf-8; mode: SGML -*- -->
+<!--A container, in which different materials with their properties can be saved.
+Two example materials can be given.
+Each material itself is represented by blockdata, which allows for new materials to be added manually.
+Blockdata is not linked to geometry.-->
+<container n="materials" pn="Materials" icon="darkorange-block1" help="Materials database">      
+  <blockdata n='material' name='Steel' sequence='1' editable_name='unique' icon="darkorange-bracket" help='Material definition' morebutton="0">
+    <value n="Density" pn="Density" v="7850" help="Mass density." unit_magnitude="M/L^3" units="kg/m^3"/>
+    <value n="E" pn="E" v="210000000000" help="Elastic modulus." unit_magnitude="P" units="Pa"/>
+    <value n="G" pn="G" v="79300000000" help="Shear modulus." unit_magnitude="P" units="Pa"/>
+  </blockdata>
+  <blockdata n='material' name='Aluminium' sequence='1' editable_name='unique' icon="darkorange-alu" help='Material definition' morebutton="0">
+    <value n="Density" pn="Density" v="2651" help="Mass density." unit_magnitude="M/L^3" units="kg/m^3"/>
+    <value n="E" pn="E" v="70000000000" help="Elastic modulus." unit_magnitude="P" units="Pa"/>
+    <value n="G" pn="G" v="24000000000" help="Shear modulus." unit_magnitude="P" units="Pa"/>
+  </blockdata>
+</container> 

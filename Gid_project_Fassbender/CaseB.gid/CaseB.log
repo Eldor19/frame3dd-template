@@ -1,0 +1,78 @@
+
+ FRAME3DD version: 20140514+
+ Analysis of 2D and 3D structural frames with elastic and geometric stiffness.
+ http://frame3dd.sf.net
+ GPL Copyright (C) 1992-2014, Henri P. Gavin
+ This is free software with absolutely no warranty.
+ For details, see the GPL license file, LICENSE.txt
+
+
+ ** Input Data file for Frame3DD - 3D structural frame analysis (N  mm  t  s  °C  ° MPa)  ** 
+
+ number of nodes .................................... nN =   5  ... complete
+ number of nodes with reactions ..................... nR =   4  ... complete
+ number of frame elements............................ nE =   4  ... complete
+ number of load cases ............................... nL =   3 
+ load case 1 of 3:                                             
+  number of loaded nodes ............................ nF =   1
+  number of uniformly distributed loads ............. nU =   0
+  number of trapezoidally distributed loads ......... nW =   0
+  number of concentrated frame element point loads .. nP =   0
+  number of temperature changes ..................... nT =   0
+  number of prescribed displacements ................ nD =   0
+ load case 2 of 3:                                             
+  number of loaded nodes ............................ nF =   0
+  number of uniformly distributed loads ............. nU =   2
+  number of trapezoidally distributed loads ......... nW =   2
+  number of concentrated frame element point loads .. nP =   0
+  number of temperature changes ..................... nT =   1
+  number of prescribed displacements ................ nD =   0
+ load case 3 of 3:                                             
+  number of loaded nodes ............................ nF =   0
+  number of uniformly distributed loads ............. nU =   0
+  number of trapezoidally distributed loads ......... nW =   0
+  number of concentrated frame element point loads .. nP =   2
+  number of temperature changes ..................... nT =   0
+  number of prescribed displacements ................ nD =   0
+                                                      load data ... complete
+ number of dynamic modes ............................ nM =   0
+                                                      mass data ... complete
+ missing matrix condensation data 
+
+ Load Case 1 of 3 ...                                           
+ Linear Elastic Analysis ... Mechanical Loads
+
+ Non-Linear Elastic Analysis ...
+   NR iteration   1 --- RMS relative equilibrium error = 3.65e-003 
+   NR iteration   2 --- RMS relative equilibrium error = 1.02e-008 
+   NR iteration   3 --- RMS relative equilibrium error = 2.10e-012 
+  RMS relative equilibrium error  = 2.102e-012  < tol = 1.0e-009  ** converged ** 
+  RMS residual incremental displ. = 1.549e-032 ................. *  wicked!    * 
+
+ Load Case 2 of 3 ...                                           
+ Linear Elastic Analysis ... Temperature Loads
+ Linear Elastic Analysis ... Mechanical Loads
+
+ Non-Linear Elastic Analysis ...
+   NR iteration   1 --- RMS relative equilibrium error = 2.38e-002 
+   NR iteration   2 --- RMS relative equilibrium error = 4.28e-005 
+   NR iteration   3 --- RMS relative equilibrium error = 6.14e-008 
+   NR iteration   4 --- RMS relative equilibrium error = 1.52e-010 
+  RMS relative equilibrium error  = 1.518e-010  < tol = 1.0e-009  ** converged ** 
+  RMS residual incremental displ. = 5.463e-029 ................. *  priceless! * 
+
+ Load Case 3 of 3 ...                                           
+ Linear Elastic Analysis ... Mechanical Loads
+
+ Non-Linear Elastic Analysis ...
+   NR iteration   1 --- RMS relative equilibrium error = 2.12e-001 
+   NR iteration   2 --- RMS relative equilibrium error = 4.33e-003 
+   NR iteration   3 --- RMS relative equilibrium error = 4.75e-004 
+   NR iteration   4 --- RMS relative equilibrium error = 1.10e-005 
+   NR iteration   5 --- RMS relative equilibrium error = 1.05e-006 
+   NR iteration   6 --- RMS relative equilibrium error = 2.73e-008 
+   NR iteration   7 --- RMS relative equilibrium error = 2.34e-009 
+   NR iteration   8 --- RMS relative equilibrium error = 6.68e-011 
+  RMS relative equilibrium error  = 6.676e-011  < tol = 1.0e-009  ** converged ** 
+  RMS residual incremental displ. = 1.161e-028 ................. *good as gold!* 
+
